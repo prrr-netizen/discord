@@ -1,66 +1,288 @@
-// aos.js
-AOS.init({
-  duration: 700,
-  once: true
-});
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>rlnl · Discord 라이선스 관리 봇</title>
 
-// navbar burger 토글
-document.addEventListener("DOMContentLoaded", () => {
-  const burger = document.querySelector(".navbar-burger");
-  const menu = document.querySelector("#navbarBasicExample");
+    <!-- 로컬 CSS -->
+    " />
+    " />
 
-  if (burger && menu) {
-    burger.addEventListener("click", () => {
-      burger.classList.toggle("is-active");
-      menu.classList.toggle("is-active");
-    });
-  }
-});
+    <!-- 외부 CSS (AOS만 사용) -->
+    //unpkg.com/aos@2.3.1/dist/aos.css" />
 
-// jQuery 버전 토글 (기존 템플릿 호환용)
-$(document).ready(function () {
-  $(".navbar-burger").click(function () {
-    $(".navbar-burger").toggleClass("is-active");
-    $(".navbar-menu").toggleClass("is-active");
-  });
-});
+    <!-- 로컬 JS -->
+    <script src="jquery-3.6.0.js"></script>
+  </head>
+  <body>
+    <!-- Back To Top Start -->
+    <a id="backtotop">
+      ▲
+    </a>
+    <!-- Back To Top End -->
 
-// navbar on scroll
-$(function () {
-  $(window).on("scroll", function () {
-    if ($(window).scrollTop() > 700) {
-      $("nav").addClass("nav-w");
-      $(".navbar-menu").addClass("nav-w");
-      $(".navbar-item").addClass("nav-dark");
-      $(".navbar-link").addClass("nav-dark");
-      $(".navbar-burger").removeClass("has-text-white");
-      $(".navbar-burger").addClass("has-text-dark");
-    } else {
-      $("nav").removeClass("nav-w");
-      $(".navbar-menu").removeClass("nav-w");
-      $(".navbar-item").removeClass("nav-dark");
-      $(".navbar-link").removeClass("nav-dark");
-      $(".navbar-burger").removeClass("has-text-dark");
-      $(".navbar-burger").addClass("has-text-white");
-    }
-  });
-});
+    <!-- Navbar Start -->
+    <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand mt-2 mb-2">
+        <a class="navbar-item" href="#">
+          <strong>rlnl</strong>
+        </a>
 
-// back to top
-var btn = $("#backtotop");
+        <a
+          role="button"
+          class="navbar-burger has-text-white"
+          data-target="navbarBasicExample"
+          aria-label="menu"
+          aria-expanded="false"
+        >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
 
-$(window).scroll(function () {
-  if ($(window).scrollTop() > 100) {
-    btn.addClass("show");
-  } else {
-    btn.removeClass("show");
-  }
-});
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+          <a href="#" class="navbar-item is-tab">
+            홈
+          </a>
 
-btn.on("click", function (e) {
-  e.preventDefault();
-  $("html, body").animate({ scrollTop: 0 }, 300);
-});
+          <a href="#features" class="navbar-item is-tab">
+            기능 소개
+          </a>
 
-// copyright year
-document.getElementById("cp-year").innerHTML = new Date().getFullYear();
+          <a href="#stats" class="navbar-item is-tab">
+            통계
+          </a>
+
+          <a href="#" class="navbar-item is-tab">
+            문서 (준비 중)
+          </a>
+        </div>
+
+        <div class="navbar-end">
+          <a href="https://discord.gg/dsZjSb8JS2" class="navbar-item is-tab" target="_blank">
+            Discord 서버
+          </a>
+
+          <div class="navbar-item">
+            <div class="buttons">
+              <a href="#" class="button is-blurple" title="웹 패널 로그인 기능은 준비 중입니다.">
+                <strong>패널 로그인 (준비 중)</strong>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!-- Navbar End -->
+
+    <!-- Hero Section Start -->
+    <section class="hero bg-base is-fullheight">
+      <div class="hero-body">
+        <div class="">
+          <div class="columns">
+            <div class="column mr-6 mt-12" data-aos="fade-up">
+              <p class="title has-text-white has-text-weight-bold">
+                디스코드에서 끝내는 라이선스 관리,<br />
+                <span class="blurple">rlnl</span> 라이선스 봇.
+              </p>
+              <p class="subtitle has-text-grey-light is-size-6 mt-3">
+                rlnl은 디스코드 전용 라이선스 관리 봇입니다.<br />
+                라이선스 발급 · 인증 · 만료 · 역할 연동까지 모두 디스코드 안에서 처리할 수 있도록 목표하고 있습니다.
+                현재는 테스트 단계로, 전용 테스트 서버에서 먼저 기능을 검증하고 있습니다.
+              </p>
+              <div class="buttons">
+                <a href="https://discord.gg/dsZjSb8JS2" class="button is-info">
+                  <strong>테스트 서버 입장</strong>
+                </a>
+
+                <a href="#features" class="button is-primary is-outlined">
+                  <strong>기능 자세히 보기</strong>
+                </a>
+              </div>
+            </div>
+            <div class="column mt-6" data-aos="fade-left">
+              <img
+                class="image has-image-centered vert-move mt-4"
+                src="relaunch_day.svg"
+                alt="rlnl 라이선스 봇"
+                style="width: 20rem;"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="has-text-centered">
+        <a href="#features" class="scroll-down-indicator">
+          ▼
+        </a>
+      </div>
+    </section>
+    <!-- Hero Section End -->
+
+    <!-- Hero Waves Start -->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+      <path
+        fill="#1a2634"
+        fill-opacity="1"
+        d="M0,288L24,261.3C48,235,96,181,144,154.7C192,128,240,128,288,149.3C336,171,384,213,432,202.7C480,192,528,128,576,133.3C624,139,672,213,720,213.3C768,213,816,139,864,101.3C912,64,960,64,1008,106.7C1056,149,1104,235,1152,240C1200,245,1248,171,1296,144C1344,117,1392,139,1416,149.3L1440,160L1440,0L1416,0C1392,0,1344,0,1296,0C1248,0,1200,0,1152,0C1104,0,1056,0,1008,0C960,0,912,0,864,0C816,0,768,0,720,0C672,0,624,0,576,0C528,0,480,0,432,0C384,0,336,0,288,0C240,0,192,0,144,0C96,0,48,0,24,0L0,0Z"
+      ></path>
+    </svg>
+    <!-- Hero Waves End -->
+
+    <!-- Features Section Start -->
+    <section id="features" class="section mt-6">
+      <div class="has-text-centered">
+        <h1 class="title lined">주요 기능</h1>
+        <div class="line line-center blurple"></div>
+      </div>
+
+      <!-- Feature 1 -->
+      <div class="single-feature">
+        <div class="columns mt-6">
+          <div class="column mr-6">
+            <h4 class="title">결제 연동 <span class="blurple">자동 라이선스 발급</span></h4>
+            <p class="subtitle mt-3">
+              결제 완료와 동시에 라이선스 키를 자동 발급하는 구조를 목표로 개발 중입니다.<br />
+              추후에는 RLNL Mall / 상점과 연동하여, 별도 작업 없이 디스코드에서 바로 키를 발급받을 수 있도록 지원할 예정입니다.
+            </p>
+          </div>
+          <div class="column" data-aos="fade-left">
+            <img
+              class="image has-image-centered"
+              src="features1.svg"
+              alt="자동 라이선스 발급"
+              style="width: 23rem;"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature 2 -->
+      <div class="single-feature">
+        <div class="columns mt-6">
+          <div class="column" data-aos="fade-right">
+            <img
+              class="image has-image-centered"
+              src="features2.svg"
+              alt="디스코드 내 인증"
+              style="width: 23rem;"
+            />
+          </div>
+          <div class="column">
+            <h4 class="title">
+              디스코드에서 <span class="has-text-primary">즉시 라이선스 인증</span>
+            </h4>
+            <p class="subtitle mt-3">
+              de>/license link</code> 명령어 하나로 라이선스를 디스코드 계정 또는 서버에 연결하는 방식을 설계하고 있습니다.<br />
+              인증 결과는 웹 패널과도 연동되어, 어느 계정/서버에 어떤 라이선스가 연결되어 있는지 한눈에 확인할 수 있게 될 예정입니다.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature 3 -->
+      <div class="single-feature">
+        <div class="columns mt-6">
+          <div class="column mr-6">
+            <h4 class="title">
+              만료 · 경고 · 역할 <span class="has-text-warning">자동 관리</span>
+            </h4>
+            <p class="subtitle mt-3">
+              라이선스 만료일을 자동으로 체크하고, 디스코드 역할과 연동하여 만료 시 역할 제거 및 알림 발송까지 처리하는 기능을 개발 중입니다.<br />
+              테스트 서버에서 먼저 안정성을 검증한 뒤, 실제 판매용 서비스에 순차적으로 적용할 계획입니다.
+            </p>
+          </div>
+          <div class="column" data-aos="fade-left">
+            <img
+              class="image has-image-centered"
+              src="features3.svg"
+              alt="만료 및 역할 자동 관리"
+              style="width: 23rem;"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature 4 -->
+      <div class="single-feature">
+        <div class="columns mt-6">
+          <div class="column" data-aos="fade-right">
+            <img
+              class="image has-image-centered"
+              src="features4.svg"
+              alt="웹 대시보드"
+              style="width: 23rem;"
+            />
+          </div>
+          <div class="column">
+            <h4 class="title">웹 <span class="has-text-info">관리 대시보드</span></h4>
+            <p class="subtitle mt-3">
+              브라우저에서 라이선스를 한눈에 관리할 수 있는 대시보드를 준비 중입니다.<br />
+              라이선스 상태, 사용자/서버 정보, 만료 일정, 사용 로그 등을 직관적으로 확인하고, 필요한 조치를 바로 취할 수 있는 것이 목표입니다.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Features Section End -->
+
+    <!-- Stats Section Start -->
+    <section id="stats" class="section mt-6">
+      <div class="has-text-centered">
+        <h1 class="title lined">서비스 현황</h1>
+        <div class="line line-center blurple"></div>
+      </div>
+
+      <div class="columns mt-6">
+        <div class="column has-text-centered">
+          <p class="title has-text-weight-bold lined">000</p>
+          <span class="subtitle has-text-weight-bold blurple">
+            연결 서버 수
+          </span>
+        </div>
+
+        <div class="column has-text-centered">
+          <p class="title has-text-weight-bold lined">000</p>
+          <span class="subtitle has-text-weight-bold blurple">
+            제공 예정 명령어
+          </span>
+        </div>
+
+        <div class="column has-text-centered">
+          <p class="title has-text-weight-bold lined">000</p>
+          <span class="subtitle has-text-weight-bold blurple">
+            예정 인증 사용자
+          </span>
+        </div>
+      </div>
+    </section>
+    <!-- Stats Section End -->
+
+    <!-- Footer Section Start -->
+    <footer class="footer bg-base">
+      <div class="content has-text-centered has-text-white">
+        <div class="mb-2">
+          <a href="https://discord.gg/dsZjSb8JS2" class="has-text-white" target="_blank">
+            Discord 서버 입장
+          </a>
+        </div>
+
+        <p>
+          <span class="has-text-weight-bold">rlnl · Discord License Bot</span>
+          <br />
+          &copy; <span id="cp-year"></span> Nana. All Rights Reserved.
+        </p>
+      </div>
+    </footer>
+    <!-- Footer Section End -->
+
+    <!-- 외부 JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- 로컬 스크립트 -->
+    <script src="script.js"></script>
+  </body>
+</html>
