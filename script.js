@@ -1,32 +1,27 @@
-// tippy.js
-tippy("[data-tippy-content]");
-
 // aos.js
 AOS.init({
   duration: 700,
   once: true
 });
 
-// navbar burger
-document.addEventListener('DOMContentLoaded', () => {
-  const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+// navbar burger (Bulma)
+document.addEventListener("DOMContentLoaded", () => {
+  const burger = document.querySelector(".navbar-burger");
+  const menu = document.querySelector("#navbarBasicExample");
 
-  if ($navbarBurgers.length > 0) {
-    $navbarBurgers.forEach( el => {
-      el.addEventListener('click', () => {
-        const target = el.dataset.target;
-        const $target = document.getElementById(target);
-        el.classList.toggle('is-active');
-        $target.classList.toggle('is-active');
-      });
+  if (burger && menu) {
+    burger.addEventListener("click", () => {
+      burger.classList.toggle("is-active");
+      menu.classList.toggle("is-active");
     });
   }
 });
 
-$(document).ready(function() {
-  $(".navbar-burger").click(function() {
-      $(".navbar-burger").toggleClass("is-active");
-      $(".navbar-menu").toggleClass("is-active");
+// jQuery 버전 토글 (기존 템플릿 호환용, 중복 동작해도 문제 없음)
+$(document).ready(function () {
+  $(".navbar-burger").click(function () {
+    $(".navbar-burger").toggleClass("is-active");
+    $(".navbar-menu").toggleClass("is-active");
   });
 });
 
@@ -64,8 +59,8 @@ $(window).scroll(function () {
 
 btn.on("click", function (e) {
   e.preventDefault();
-  $("html, body").animate({ scrollTop: 0 }, "300");
+  $("html, body").animate({ scrollTop: 0 }, 300);
 });
 
 // copyright year
-document.getElementById("cp-year").innerHTML = new Date().getFullYear()
+document.getElementById("cp-year").innerHTML = new Date().getFullYear();
