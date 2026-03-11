@@ -1,9 +1,3 @@
-// aos.js
-AOS.init({
-  duration: 700,
-  once: true
-});
-
 // navbar burger 토글
 document.addEventListener("DOMContentLoaded", () => {
   const burger = document.querySelector(".navbar-burger");
