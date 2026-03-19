@@ -8,7 +8,6 @@
   <style>
     :root {
       --bg-main: #020617;
-      --bg-card: #020617;
       --accent-1: #38bdf8;
       --accent-2: #a855f7;
       --accent-3: #22c55e;
@@ -229,6 +228,7 @@
       background: radial-gradient(circle at top left, #111827, #020617 70%);
       border: 1px solid rgba(148, 163, 184, 0.5);
       box-shadow: 0 10px 24px rgba(15, 23, 42, 0.9);
+      transition: transform 0.14s ease-out, box-shadow 0.14s ease-out, border-color 0.14s ease-out;
     }
 
     .action-title {
@@ -314,14 +314,6 @@
       z-index: 1;
     }
 
-    .game-card:hover {
-      transform: translateY(-3px);
-      box-shadow:
-        0 18px 42px rgba(15, 23, 42, 0.98),
-        0 0 24px rgba(56, 189, 248, 0.55);
-      border-color: rgba(56, 189, 248, 0.7);
-    }
-
     .game-title {
       font-size: 1.02rem;
       font-weight: 700;
@@ -355,6 +347,7 @@
       display: grid;
       grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.2fr);
       gap: 18px;
+      margin-top: 4px;
     }
 
     .info-section {
@@ -421,14 +414,13 @@
       <div class="hero-left">
         <h1 class="hero-title">나나 온라인 허브</h1>
         <p class="hero-subtitle">
-          지금 <strong>96명</strong>이 세션을 플레이 중입니다.
+          지금 <strong id="hero-online-count">96</strong>명이 세션을 플레이 중입니다.
         </p>
         <p class="hero-text">
           먼저 크레딧을 충전하고, 원하는 세션을 선택해 주세요.
         </p>
         <div class="hero-actions">
-          <!-- TODO: 실제 충전 페이지 경로로 변경 -->
-          <a href="/charge" class="primary-cta">캐시 충전</a>
+          <a href="/charge" class="primary-cta" id="charge-button">캐시 충전</a>
           <a href="/charge/history" class="secondary-cta">충전 내역</a>
         </div>
       </div>
@@ -436,9 +428,12 @@
       <div class="hero-right">
         <div class="status-card">
           <div class="status-label">ONLINE PLAYERS</div>
-          <!-- TODO: 실제 값 연동 가능 -->
-          <div class="status-value">96 / 1000</div>
-          <div class="status-sub">진행 중 세션 8개</div>
+          <div class="status-value">
+            <span id="online-players">96</span> / <span id="online-max">1000</span>
+          </div>
+          <div class="status-sub">
+            진행 중 세션 <span id="session-count">8</span>개
+          </div>
         </div>
       </div>
     </section>
@@ -449,7 +444,6 @@
         <p class="action-desc">
           시즌 시작 전에 미리 충전하고 추가 보상을 받아가세요.
         </p>
-        <!-- TODO: 실제 경로 수정 -->
         <a href="/pre-charge" class="card-link">사전 충전하기 →</a>
       </div>
 
@@ -483,7 +477,6 @@
           <p class="game-desc">
             공중 전투를 즐기는 실시간 협동 모드. 보이스 채널과 함께 플레이하면 더 재미있습니다.
           </p>
-          <!-- TODO: 실제 세션 안내 링크 -->
           <a href="/session/sky-arena" class="card-link">세션 안내 보기 →</a>
         </div>
 
@@ -521,10 +514,51 @@
         <p class="section-subtitle">
           디스코드 서버의 전용 지원 채널에서 버그 제보, 충전 문의, 세션 관련 질문을 남겨 주세요.
         </p>
-        <!-- TODO: 실제 디스코드 초대 링크로 변경 -->
         <a href="https://discord.gg/..." class="card-link">디스코드 열기 →</a>
       </section>
     </div>
   </main>
+
+  <script>
+    // 더미 인터랙션: 온라인 인원/세션 수 살짝살짝 변화 시켜서 살아있는 느낌
+    (function () {
+      const onlineEl = document.getElementById("online-players");
+      const heroOnlineEl = document.getElementById("hero-online-count");
+      const sessionEl = document.getElementById("session-count");
+
+      let baseOnline = 96;
+      let baseSession = 8;
+
+      function tick() {
+        const onlineDiff = Math.floor(Math.random() * 7) - 3;
+        const sessionDiff = Math.random() > 0.7 ? (Math.random() > 0.5 ? 1 : -1) : 0;
+
+        baseOnline = Math.max(0, baseOnline + onlineDiff);
+        baseSession = Math.max(1, baseSession + sessionDiff);
+
+        onlineEl.textContent = baseOnline;
+        heroOnlineEl.textContent = baseOnline;
+        sessionEl.textContent = baseSession;
+      }
+
+      setInterval(tick, 5000);
+    })();
+
+    // 클릭 시 충전 버튼에 살짝 파동 효과
+    (function () {
+      const chargeBtn = document.getElementById("charge-button");
+      if (!chargeBtn) return;
+
+      chargeBtn.addEventListener("click", function (e) {
+        // SPA가 아니면 이거 빼도 됨
+        // e.preventDefault();
+
+        chargeBtn.style.transform = "scale(0.96)";
+        setTimeout(() => {
+          chargeBtn.style.transform = "";
+        }, 120);
+      });
+    })();
+  </script>
 </body>
 </html>
