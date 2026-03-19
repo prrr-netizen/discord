@@ -193,6 +193,7 @@
       font-weight: 600;
       font-size: 0.82rem;
       text-decoration: none;
+      cursor: pointer;
     }
 
     .hero-hint {
@@ -364,6 +365,55 @@
       font-size: 0.82rem;
       text-decoration: none;
       cursor: pointer;
+    }
+
+    /* 팝업 오버레이 */
+
+    .popup-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.88);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 50;
+    }
+
+    .popup {
+      width: 100%;
+      max-width: 360px;
+      padding: 20px 18px 16px;
+      border-radius: 16px;
+      background: #020617;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.9),
+        0 0 18px rgba(59, 130, 246, 0.9);
+      text-align: center;
+    }
+
+    .popup-title {
+      font-size: 1rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .popup-text {
+      font-size: 0.86rem;
+      color: #d1d5db;
+      line-height: 1.5;
+    }
+
+    .popup-close {
+      margin-top: 14px;
+      padding: 7px 16px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      background: linear-gradient(135deg, #3b82f6, #22c55e);
+      color: #0b1120;
+      font-weight: 700;
+      font-size: 0.86rem;
     }
 
     /* 반응형 */
@@ -545,6 +595,18 @@
         </p>
       </div>
     </section>
+
+    <!-- 팝업 오버레이 (3개 분량 텍스트) -->
+    <div class="popup-backdrop" id="popup-backdrop">
+      <div class="popup">
+        <h2 class="popup-title" id="popup-title">rlnl GAME HUB</h2>
+        <p class="popup-text" id="popup-text">
+          해당 기능은 아직 구현 중입니다.<br />
+          디스코드 공지 또는 안내 채널을 확인해 주세요.
+        </p>
+        <button class="popup-close" id="popup-close">확인</button>
+      </div>
+    </div>
   </main>
 
   <script>
@@ -580,16 +642,82 @@
       setInterval(tick, 5000);
     })();
 
-    // 모든 액션 버튼/링크 클릭 시 알림창
+    // 페이지 진입 시 팝업 3개 연속 띄우기 + 버튼 클릭 시도 팝업
     (function () {
-      function showWip() {
-        alert("해당 기능은 구현 중입니다.\n디스코드 공지를 확인해 주세요.");
+      const backdrop = document.getElementById("popup-backdrop");
+      const titleEl = document.getElementById("popup-title");
+      const textEl = document.getElementById("popup-text");
+      const closeBtn = document.getElementById("popup-close");
+
+      // 보여줄 팝업 3개 내용
+      const popupQueue = [
+        {
+          title: "rlnl GAME HUB 안내",
+          text: "현재 사이트는 개발 중입니다.<br />일부 기능은 작동하지 않을 수 있습니다."
+        },
+        {
+          title: "Discord 연동 예정",
+          text: "곧 디스코드 인증 / 자동 충전 / 세션 연동 기능이 추가될 예정입니다.<br />조금만 기다려 주세요."
+        },
+        {
+          title: "테스트 안내",
+          text: "버튼을 눌러도 실제 결제/충전은 진행되지 않습니다.<br />연동 전까지는 안내용 페이지로만 사용됩니다."
+        }
+      ];
+
+      let popupIndex = 0;
+
+      function showPopup(index) {
+        if (!backdrop || !titleEl || !textEl) return;
+        const data = popupQueue[index];
+        if (!data) return;
+
+        titleEl.innerHTML = data.title;
+        textEl.innerHTML = data.text;
+        backdrop.style.display = "flex";
       }
 
+      function hidePopup() {
+        if (!backdrop) return;
+        backdrop.style.display = "none";
+      }
+
+      function nextPopup() {
+        hidePopup();
+        popupIndex += 1;
+        if (popupIndex < popupQueue.length) {
+          // 다음 팝업 바로 열기 (원하면 setTimeout으로 딜레이 가능)
+          showPopup(popupIndex);
+        }
+      }
+
+      // 페이지 진입 시 첫 팝업 바로 띄우기
+      window.addEventListener("load", () => {
+        popupIndex = 0;
+        showPopup(popupIndex);
+      });
+
+      if (closeBtn) {
+        closeBtn.addEventListener("click", nextPopup);
+      }
+
+      if (backdrop) {
+        // 바깥 클릭 시도 다음 팝업
+        backdrop.addEventListener("click", (e) => {
+          if (e.target === backdrop) {
+            nextPopup();
+          }
+        });
+      }
+
+      // 모든 액션 버튼/링크 클릭 시에도 팝업 (이미 다 본 경우 첫 팝업부터 다시)
       document.querySelectorAll(".hub-action").forEach((el) => {
         el.addEventListener("click", (e) => {
           e.preventDefault();
-          showWip();
+          if (!backdrop) return;
+          // 큐 다 돌았으면 처음부터 다시
+          if (popupIndex >= popupQueue.length) popupIndex = 0;
+          showPopup(popupIndex);
         });
       });
     })();
