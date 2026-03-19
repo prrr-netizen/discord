@@ -80,7 +80,7 @@ body {
 }
 .win-dots span:nth-child(1) { background: #f97373; }
 .win-dots span:nth-child(2) { background: #facc15; }
-.win-dots span:nth-child(3) { background: #22c55e; }
+win-dots span:nth-child(3) { background: #22c55e; }
 
 .panel-header-label {
   font-size: 0.8rem;
