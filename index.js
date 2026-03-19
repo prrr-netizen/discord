@@ -10,29 +10,44 @@ const PORT = process.env.PORT || 3000;
 // === 디스코드 OAuth 설정 ===
 const CLIENT_ID = process.env.DISCORD_CLIENT_ID || "YOUR_CLIENT_ID";
 const CLIENT_SECRET = process.env.DISCORD_CLIENT_SECRET || "YOUR_CLIENT_SECRET";
-const BASE_URL = process.env.BASE_URL || "https://example.com"; // 배포 도메인
-const REDIRECT_URI = `${BASE_URL}/account/callback`;            // 디스코드 개발자 포털에도 동일하게 등록
+
+// BASE_URL: 이 Node 서버의 외부에서 보이는 주소 (예: https://oauth.rlnl.xyz)
+const BASE_URL = process.env.BASE_URL || "https://example.com";
+
+// FRONT_URL: 프론트(지금 GitHub Pages) 주소
+// 예: https://prrr-netizen.github.io/rlnl
+const FRONT_URL = process.env.FRONT_URL || "https://prrr-netizen.github.io/rlnl";
+
+// 디스코드 개발자 포털에도 이 값과 똑같이 넣어야 함
+const REDIRECT_URI = `${BASE_URL}/account/callback`;
 
 // 공통 미들웨어
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// 정적 파일
+// 정적 파일 (필요하면 사용, 지금은 안 쓰면 public 없이도 됨)
 app.use(express.static(path.join(__dirname, "public")));
 
-// ===== 1) 랜딩 페이지 (/link/main) =====
+// ===== 1) 루트: 프론트로 넘기기 =====
+// 이 서버 도메인으로 그냥 들어오면 GitHub Pages로 보내버림
+app.get("/", (req, res) => {
+  return res.redirect(FRONT_URL);
+});
 
+// ===== 2) 랜딩 페이지 (옵션): /link/main =====
+// 만약 Node 서버에서도 간단한 랜딩 하나 띄우고 싶으면 public/link-main.html 사용
 app.get("/link/main", (req, res) => {
+  // public/link-main.html 파일이 있을 때만 의미 있음
   res.sendFile(path.join(__dirname, "public", "link-main.html"));
 });
 
-// ===== 2) 디스코드 OAuth2 시작 =====
-
-// 랜딩에서 "디스코드로 계속하기"가 이 URL로 이동해도 됨
+// ===== 3) 디스코드 OAuth2 시작 (/auth/discord) =====
+// 프론트에서 "디스코드로 계속하기" 버튼을 이 URL로 연결하면 됨
 app.get("/auth/discord", (req, res) => {
   const state = Buffer.from(
     JSON.stringify({
       ts: Date.now()
+      // 필요하면 여기 유저/길드 식별용 토큰 추가
     })
   ).toString("base64url");
 
@@ -48,7 +63,7 @@ app.get("/auth/discord", (req, res) => {
   return res.redirect(url);
 });
 
-// ===== 3) 디스코드 콜백 (/account/callback) =====
+// ===== 4) 디스코드 콜백 (/account/callback) =====
 
 app.get("/account/callback", async (req, res) => {
   const code = req.query.code;
@@ -59,13 +74,14 @@ app.get("/account/callback", async (req, res) => {
   }
 
   try {
-    // state 복호화 (여기선 그냥 유효성만 대충 체크)
+    // state 복호화 (유효성만 대충 체크)
     if (state) {
       try {
         const decoded = JSON.parse(
           Buffer.from(state, "base64url").toString("utf8")
         );
         // TODO: ts 범위 체크 등
+        // console.log("state:", decoded);
       } catch (e) {
         console.warn("state 디코드 실패:", e);
       }
@@ -103,9 +119,14 @@ app.get("/account/callback", async (req, res) => {
     //       디스코드 봇과 연동(역할 지급 등) 처리하면 guildsrestore 같은 구조 완성
 
     // 3) 인증 완료 페이지로 리다이렉트
-    const redirectUrl = `/account/complete?username=${encodeURIComponent(
-      user.global_name || user.username
-    )}`;
+    //   - 여기서 FRONT_URL로 돌려보내고, 쿼리에 이름/상태 정도 실어줄 수도 있음
+    const username = encodeURIComponent(user.global_name || user.username);
+
+    // 예시 1: 이 Node 서버의 /account/complete로 보내기
+    // const redirectUrl = `/account/complete?username=${username}`;
+
+    // 예시 2: 바로 프론트로 보내기 (GitHub Pages 쪽에서 처리)
+    const redirectUrl = `${FRONT_URL}?auth=ok&username=${username}`;
 
     return res.redirect(redirectUrl);
   } catch (err) {
@@ -114,12 +135,12 @@ app.get("/account/callback", async (req, res) => {
   }
 });
 
-// ===== 4) 인증 완료 페이지 =====
+// ===== 5) 인증 완료 페이지 (옵션) =====
+// GitHub Pages에서 처리 안 하고, 백엔드에서 직접 “인증 완료” 페이지 보여주고 싶을 때만 사용
 
 app.get("/account/complete", (req, res) => {
   const username = req.query.username || "알 수 없음";
 
-  // 여기서는 HTML을 직접 쏴서 간단히 처리 (원하면 public/complete.html 로 빼도 됨)
   res.send(`
 <!DOCTYPE html>
 <html lang="ko">
@@ -180,17 +201,11 @@ app.get("/account/complete", (req, res) => {
     <h1>인증 완료</h1>
     <p><strong>${username}</strong> 님, 디스코드 계정 연동이 완료되었습니다.</p>
     <p>이제 rlnl GAME HUB의 기능을 정상적으로 이용하실 수 있습니다.</p>
-    <a class="btn" href="/">메인으로 돌아가기</a>
+    <a class="btn" href="${FRONT_URL}">메인으로 돌아가기</a>
   </div>
 </body>
 </html>
   `);
-});
-
-// ===== 5) 루트 (원하면 기존 허브로 교체 가능) =====
-app.get("/", (req, res) => {
-  // 일단은 /link/main 으로 보내서, 링크 랜딩이 메인처럼 보이게
-  return res.redirect("/link/main");
 });
 
 // 서버 시작
