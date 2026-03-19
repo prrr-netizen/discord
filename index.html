@@ -5,115 +5,150 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>rlnl</title>
 
-    <!-- 로컬 CSS -->
+    <!-- Bulma -->
     <link rel="stylesheet" href="bulma.min.css" />
+    <!-- 커스텀 스타일 -->
     <link rel="stylesheet" href="style.css" />
 
-    <!-- 로컬 JS (jQuery) -->
     <script src="jquery-3.6.0.js"></script>
   </head>
   <body>
-    <!-- Back To Top Start -->
-    <a id="backtotop" aria-label="맨 위로 이동">
-      ▲
-    </a>
-    <!-- Back To Top End -->
+    <!-- Back To Top -->
+    <a id="backtotop" aria-label="맨 위로 이동">▲</a>
 
-    <!-- Navbar Start -->
-    <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
-      <div class="navbar-brand mt-2 mb-2">
-        <a class="navbar-item" href="#">
-          <strong>rlnl</strong>
-        </a>
-
-        <a
-          role="button"
-          class="navbar-burger has-text-white"
-          data-target="navbarMenu"
-          aria-label="menu"
-          aria-expanded="false"
-        >
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-        </a>
-      </div>
-
-      <div id="navbarMenu" class="navbar-menu">
-        <div class="navbar-start">
-          <a href="#" class="navbar-item is-tab">홈</a>
-        </div>
-
-        <div class="navbar-end">
-          <a href="https://discord.gg/dsZjSb8JS2" class="navbar-item is-tab" target="_blank">
-            Discord 서버
+    <!-- 상단 네비 (피지컬 스타일) -->
+    <nav class="navbar is-fixed-top nav-shell" role="navigation" aria-label="main navigation">
+      <div class="container is-max-desktop">
+        <div class="navbar-brand mt-2 mb-2">
+          <a class="navbar-item brand-text" href="#">
+            rlnl WEB
           </a>
 
-          <div class="navbar-item">
-            <div class="buttons">
-              <a href="#" class="button is-blurple" title="나만 쓰는 rlnl 패널 홈">
-                <strong>rlnl 패널</strong>
-              </a>
+          <a
+            role="button"
+            class="navbar-burger has-text-white"
+            data-target="navbarMenu"
+            aria-label="menu"
+            aria-expanded="false"
+          >
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
+
+        <div id="navbarMenu" class="navbar-menu">
+          <div class="navbar-start">
+            <a href="#top" class="navbar-item is-tab">Home</a>
+            <a href="#license" class="navbar-item is-tab">License</a>
+            <a href="#about" class="navbar-item is-tab">About</a>
+          </div>
+
+          <div class="navbar-end">
+            <div class="navbar-item">
+              <button class="button google-btn">
+                Google 로그인
+              </button>
             </div>
           </div>
         </div>
       </div>
     </nav>
-    <!-- Navbar End -->
 
-    <!-- Single Section Start -->
-    <section class="hero bg-base is-fullheight">
+    <!-- 통짜 메인 섹션 -->
+    <section id="top" class="hero is-fullheight bg-root">
       <div class="hero-body">
-        <div class="columns is-vcentered">
-          <div class="column mr-6 mt-6">
-            <p class="title has-text-white has-text-weight-bold">
-              rlnl<br />
-              <span class="blurple">나만 쓰는</span> 디스코드 툴 허브.
-            </p>
-            <p class="subtitle has-text-grey-light is-size-6 mt-3">
-              이 페이지는 Nana가 사용하는 개인용 rlnl 패널입니다.<br />
-              실제 유저용 서비스 페이지가 아니라, 봇·패널·테스트 서버를 관리하기 위한
-              내부용 홈 화면으로 사용되고 있습니다.
-            </p>
+        <div class="container is-max-desktop">
 
-            <div class="buttons mt-4">
-              <a href="https://discord.gg/dsZjSb8JS2" class="button is-info">
-                <strong>테스트 서버 열기</strong>
-              </a>
-              <a href="#" class="button is-primary is-outlined">
-                <strong>추가 패널 연결 (준비 중)</strong>
-              </a>
+          <!-- 큰 패널 전체 -->
+          <div class="panel-shell">
+            <!-- 작은 타이틀 바 (좌 상단) -->
+            <div class="panel-header">
+              <div class="win-dots">
+                <span></span><span></span><span></span>
+              </div>
+              <span class="panel-header-label">Discord License · rlnl</span>
+            </div>
+
+            <!-- 메인 내용 2컬럼 -->
+            <div class="columns is-vcentered panel-main">
+              <!-- 좌측 텍스트 + 입력 -->
+              <div class="column is-7">
+                <p class="main-title">
+                  디스코드에서 끝내는<br />
+                  라이선스 관리, <span class="accent">rlnl.</span>
+                </p>
+                <p class="main-subtitle">
+                  디스코드 전용 라이선스 관리 봇입니다.<br />
+                  실제 서버에 적용 가능한 구조로 운영 중이며,<br />
+                  신규 기능은 점진적으로 추가되고 있습니다.
+                </p>
+
+                <div id="license" class="license-card">
+                  <p class="license-title">라이선스 상태 확인</p>
+                  <p class="license-desc">
+                    결제 후 발급받은 라이선스 키를 입력하면,<br />
+                    유효 여부와 만료일을 확인할 수 있습니다.
+                  </p>
+
+                  <div class="license-input-row">
+                    <div class="license-input-wrap">
+                      <input
+                        type="text"
+                        class="license-input"
+                        placeholder="예) RLNL-XXXX-XXXX"
+                      />
+                    </div>
+                    <button class="license-btn">확인</button>
+                  </div>
+
+                  <p class="license-hint">Google 로그인 후 사용 가능합니다.</p>
+                  <a
+                    href="https://discord.gg/dsZjSb8JS2"
+                    target="_blank"
+                    class="license-link"
+                  >
+                    디스코드에서 라이선스 문의하기
+                  </a>
+                </div>
+              </div>
+
+              <!-- 우측 이미지 카드 -->
+              <div class="column is-5">
+                <div class="img-card">
+                  <div class="img-inner">
+                    <!-- 여기 이미지 변경 -->
+                    <img src="your-image.jpg" alt="preview" />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div class="column mt-6">
-            <img
-              class="image has-image-centered vert-move mt-4"
-              src="relaunch_day.svg"
-              alt="rlnl 패널"
-              style="width: 20rem;"
-            />
+          <!-- About 박스 (큰 패널 아래 통짜) -->
+          <div id="about" class="about-shell">
+            <p class="about-title">About rlnl</p>
+            <p class="about-text">
+              RLNL 디스코드 서버에서 라이선스를 간편하게 관리할 수 있도록 설계된 봇입니다.
+              역할 연동, 만료 알림, 웹 패널 연동 등을 단계적으로 도입할 예정입니다.
+            </p>
           </div>
         </div>
       </div>
+
+      <!-- 하단 푸터 텍스트는 패널 밖 간단하게 -->
+      <footer class="footer bg-root footer-lite">
+        <div class="content has-text-centered footer-text">
+          <p>
+            <span class="has-text-weight-bold">rlnl</span><br />
+            개인용 디스코드 툴 패널<br />
+            &copy; <span id="cp-year"></span> Nana. All Rights Reserved.
+          </p>
+        </div>
+      </footer>
     </section>
-    <!-- Single Section End -->
 
-    <!-- Footer Start -->
-    <footer class="footer bg-base">
-      <div class="content has-text-centered has-text-white">
-        <p>
-          <span class="has-text-weight-bold">rlnl</span>
-          <br />
-          개인용 디스코드 툴 패널
-          <br />
-          &copy; <span id="cp-year"></span> Nana. All Rights Reserved.
-        </p>
-      </div>
-    </footer>
-    <!-- Footer End -->
-
-    <!-- 로컬 스크립트 -->
+    <!-- 스크립트 (기존 rlnl JS 거의 유지) -->
     <script>
       // navbar burger 토글
       document.addEventListener("DOMContentLoaded", () => {
@@ -126,27 +161,6 @@
             menu.classList.toggle("is-active");
           });
         }
-      });
-
-      // navbar on scroll
-      $(function () {
-        $(window).on("scroll", function () {
-          if ($(window).scrollTop() > 700) {
-            $("nav").addClass("nav-w");
-            $(".navbar-menu").addClass("nav-w");
-            $(".navbar-item").addClass("nav-dark");
-            $(".navbar-link").addClass("nav-dark");
-            $(".navbar-burger").removeClass("has-text-white");
-            $(".navbar-burger").addClass("has-text-dark");
-          } else {
-            $("nav").removeClass("nav-w");
-            $(".navbar-menu").removeClass("nav-w");
-            $(".navbar-item").removeClass("nav-dark");
-            $(".navbar-link").removeClass("nav-dark");
-            $(".navbar-burger").removeClass("has-text-dark");
-            $(".navbar-burger").addClass("has-text-white");
-          }
-        });
       });
 
       // back to top
