@@ -10,13 +10,16 @@
     <!-- Custom -->
     <link rel="stylesheet" href="style.css" />
 
+    <!-- jQuery -->
     <script src="jquery-3.6.0.js"></script>
+    <!-- 메인 스크립트 -->
+    <script defer src="main.js"></script>
   </head>
   <body>
     <!-- Back To Top -->
     <a id="backtotop" aria-label="맨 위로 이동">▲</a>
 
-    <!-- 상단 네비 (통짜 바) -->
+    <!-- 상단 네비 -->
     <nav class="navbar is-fixed-top nav-shell" role="navigation" aria-label="main navigation">
       <div class="container is-max-desktop">
         <div class="navbar-brand mt-2 mb-2">
@@ -117,7 +120,7 @@
               <div class="column is-5">
                 <div class="img-card">
                   <div class="img-inner">
-                    <!-- 원하는 이미지로 교체 -->
+                    <!-- 원하는 이미지 경로로 교체 -->
                     <img src="your-image.jpg" alt="preview" />
                   </div>
                 </div>
@@ -136,7 +139,7 @@
         </div>
       </div>
 
-      <!-- 하단 푸터 텍스트 -->
+      <!-- 하단 푸터 -->
       <footer class="footer bg-root footer-lite">
         <div class="content has-text-centered footer-text">
           <p>
@@ -147,40 +150,5 @@
         </div>
       </footer>
     </section>
-
-    <!-- 스크립트 -->
-    <script>
-      // navbar burger 토글
-      document.addEventListener("DOMContentLoaded", () => {
-        const burger = document.querySelector(".navbar-burger");
-        const menu = document.querySelector("#navbarMenu");
-
-        if (burger && menu) {
-          burger.addEventListener("click", () => {
-            burger.classList.toggle("is-active");
-            menu.classList.toggle("is-active");
-          });
-        }
-      });
-
-      // back to top
-      var btn = $("#backtotop");
-
-      $(window).scroll(function () {
-        if ($(window).scrollTop() > 100) {
-          btn.addClass("show");
-        } else {
-          btn.removeClass("show");
-        }
-      });
-
-      btn.on("click", function (e) {
-        e.preventDefault();
-        $("html, body").animate({ scrollTop: 0 }, 300);
-      });
-
-      // copyright year
-      document.getElementById("cp-year").innerHTML = new Date().getFullYear();
-    </script>
   </body>
 </html>
