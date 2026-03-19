@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>rlnl</title>
+    <title>rlnl CASINO STYLE</title>
 
     <!-- Bulma -->
     <link rel="stylesheet" href="bulma.min.css" />
@@ -19,12 +19,12 @@
     <!-- Back To Top -->
     <a id="backtotop" aria-label="맨 위로 이동">▲</a>
 
-    <!-- 상단 네비 -->
+    <!-- 상단 네비 (카지노 헤더 느낌) -->
     <nav class="navbar is-fixed-top nav-shell" role="navigation" aria-label="main navigation">
       <div class="container is-max-desktop">
         <div class="navbar-brand mt-2 mb-2">
           <a class="navbar-item brand-text" href="#top">
-            rlnl WEB
+            rlnl CASINO
           </a>
 
           <a
@@ -42,15 +42,18 @@
 
         <div id="navbarMenu" class="navbar-menu">
           <div class="navbar-start">
-            <a href="#top" class="navbar-item is-tab">Home</a>
-            <a href="#license" class="navbar-item is-tab">License</a>
-            <a href="#about" class="navbar-item is-tab">About</a>
+            <a href="#top" class="navbar-item is-tab">HOME</a>
+            <a href="#license" class="navbar-item is-tab">LICENSE</a>
+            <a href="#about" class="navbar-item is-tab">ABOUT</a>
           </div>
 
           <div class="navbar-end">
             <div class="navbar-item">
-              <button class="button google-btn">
-                Google 로그인
+              <button class="button header-btn-outline">
+                로그인
+              </button>
+              <button class="button header-btn-primary">
+                회원가입
               </button>
             </div>
           </div>
@@ -70,28 +73,36 @@
               <div class="win-dots">
                 <span></span><span></span><span></span>
               </div>
-              <span class="panel-header-label">Discord License · rlnl</span>
+              <span class="panel-header-label">PREMIUM LICENSE CENTER · rlnl</span>
             </div>
 
             <!-- 메인 2컬럼 -->
             <div class="columns is-vcentered panel-main">
-              <!-- 왼쪽: 텍스트 + 라이선스 입력 -->
+              <!-- 왼쪽: 텍스트 + 라이선스/로그인 카드 -->
               <div class="column is-7">
                 <p class="main-title">
-                  디스코드에서 끝내는<br />
-                  라이선스 관리, <span class="accent">rlnl.</span>
+                  디스코드 전용<br />
+                  <span class="accent">프리미엄 라이선스 센터</span>
                 </p>
                 <p class="main-subtitle">
-                  디스코드 전용 라이선스 관리 봇입니다.<br />
-                  실제 서버에 적용 가능한 구조로 운영 중이며,<br />
-                  신규 기능은 점진적으로 추가되고 있습니다.
+                  카지노 사이트처럼 직관적인 대시보드에서<br />
+                  라이선스 상태·만료일·서버 정보를 한 번에 확인하세요.
                 </p>
 
+                <div class="hero-cta">
+                  <a href="#license" class="btn-primary-hero">지금 시작하기</a>
+                  <span class="hero-tag">ONLINE LICENSE : 128 / DAY</span>
+                </div>
+
                 <div id="license" class="license-card">
-                  <p class="license-title">라이선스 상태 확인</p>
+                  <div class="license-card-header">
+                    <p class="license-title">라이선스 상태 확인</p>
+                    <span class="license-badge">LIVE</span>
+                  </div>
+
                   <p class="license-desc">
                     결제 후 발급받은 라이선스 키를 입력하면,<br />
-                    유효 여부와 만료일을 확인할 수 있습니다.
+                    유효 여부와 만료일, 연결된 서버를 확인할 수 있습니다.
                   </p>
 
                   <div class="license-input-row">
@@ -105,13 +116,18 @@
                     <button class="license-btn">확인</button>
                   </div>
 
-                  <p class="license-hint">Google 로그인 후 사용 가능합니다.</p>
+                  <div class="license-meta">
+                    <span>오늘 검증 요청 <strong>254건</strong></span>
+                    <span>성공률 <strong>100%</strong></span>
+                  </div>
+
+                  <p class="license-hint">Google 로그인 후 상세 정보 확인이 가능합니다.</p>
                   <a
                     href="https://discord.gg/dsZjSb8JS2"
                     target="_blank"
                     class="license-link"
                   >
-                    디스코드에서 라이선스 문의하기
+                    디스코드 고객센터 바로가기
                   </a>
                 </div>
               </div>
@@ -123,6 +139,12 @@
                     <!-- 원하는 이미지 경로로 교체 -->
                     <img src="relaunch_day.svg" alt="preview" />
                   </div>
+                  <div class="img-overlay">
+                    <span class="img-tag">REAL-TIME PANEL</span>
+                    <span class="img-sub">
+                      서버 상태 · 라이선스 잔여일 · 알림 로그를 한 눈에.
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -132,8 +154,9 @@
           <div id="about" class="about-shell">
             <p class="about-title">About rlnl</p>
             <p class="about-text">
-              RLNL 디스코드 서버에서 라이선스를 간편하게 관리할 수 있도록 설계된 봇입니다.
-              역할 연동, 만료 알림, 웹 패널 연동 등을 단계적으로 도입할 예정입니다.
+              rlnl은 디스코드 서버에서 라이선스를 쉽고 안전하게 관리할 수 있도록 설계된 전용 패널입니다.
+              카지노 사이트 수준의 직관적인 UI와 실시간 갱신 구조를 목표로 개발되고 있으며,
+              역할 연동, 만료 알림, 웹 패널 연동 등 기능이 순차적으로 확장될 예정입니다.
             </p>
           </div>
         </div>
@@ -143,8 +166,7 @@
       <footer class="footer bg-root footer-lite">
         <div class="content has-text-centered footer-text">
           <p>
-            <span class="has-text-weight-bold">rlnl</span><br />
-            개인용 디스코드 툴 패널<br />
+            <span class="has-text-weight-bold">rlnl CASINO STYLE PANEL</span><br />
             &copy; <span id="cp-year"></span> Nana. All Rights Reserved.
           </p>
         </div>
