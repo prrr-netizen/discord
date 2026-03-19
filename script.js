@@ -1,4 +1,4 @@
-// 더미: 온라인 인원/세션/충전 건수 살짝 애니메이션
+// 더미: 온라인 인원/세션/충전 건수 조금씩 변동
 (function () {
   const onlineEl = document.getElementById("online-players");
   const heroOnlineEl = document.getElementById("hero-online-count");
@@ -7,9 +7,9 @@
 
   if (!onlineEl || !heroOnlineEl || !sessionEl || !todayChargeEl) return;
 
-  let baseOnline = 42;
-  let baseSession = 5;
-  let baseTodayCharge = 27;
+  let baseOnline = parseInt(onlineEl.textContent || "40", 10);
+  let baseSession = parseInt(sessionEl.textContent || "5", 10);
+  let baseTodayCharge = parseInt(todayChargeEl.textContent || "27", 10);
 
   function tick() {
     const onlineDiff = Math.floor(Math.random() * 5) - 2;
