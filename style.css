@@ -288,7 +288,7 @@ body {
   text-decoration: none;
 }
 
-/* 약간 강조 들어가는 카드 */
+/* 강조 카드 */
 .feature-card.accent-orange {
   border-color: rgba(248, 113, 113, 0.8);
 }
