@@ -1,186 +1,338 @@
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>rlnl</title>
+<head>
+  <meta charset="UTF-8">
+  <title>rlnl WEB</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Bulma -->
-    <link rel="stylesheet" href="bulma.min.css" />
-    <!-- 커스텀 스타일 -->
-    <link rel="stylesheet" href="style.css" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #020817;
+      color: #e5f3ff;
+      line-height: 1.5;
+    }
+    a { text-decoration: none; color: inherit; }
 
-    <script src="jquery-3.6.0.js"></script>
-  </head>
-  <body>
-    <!-- Back To Top -->
-    <a id="backtotop" aria-label="맨 위로 이동">▲</a>
+    .container {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
 
-    <!-- 상단 네비 (피지컬 스타일) -->
-    <nav class="navbar is-fixed-top nav-shell" role="navigation" aria-label="main navigation">
-      <div class="container is-max-desktop">
-        <div class="navbar-brand mt-2 mb-2">
-          <a class="navbar-item brand-text" href="#">
-            rlnl WEB
-          </a>
+    /* 상단 네비바 */
+    .top-nav-wrap {
+      background: radial-gradient(circle at top left, #1b2b4a, #020817);
+      border-radius: 0 0 24px 24px;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.6);
+      margin-bottom: 28px;
+    }
 
-          <a
-            role="button"
-            class="navbar-burger has-text-white"
-            data-target="navbarMenu"
-            aria-label="menu"
-            aria-expanded="false"
-          >
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-          </a>
-        </div>
+    .top-nav {
+      height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 26px;
+    }
 
-        <div id="navbarMenu" class="navbar-menu">
-          <div class="navbar-start">
-            <a href="#top" class="navbar-item is-tab">Home</a>
-            <a href="#license" class="navbar-item is-tab">License</a>
-            <a href="#about" class="navbar-item is-tab">About</a>
-          </div>
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+      color: #e5f3ff;
+    }
 
-          <div class="navbar-end">
-            <div class="navbar-item">
-              <button class="button google-btn">
-                Google 로그인
-              </button>
-            </div>
-          </div>
-        </div>
+    .logo-dot {
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, #6afec5, #38bdf8);
+      box-shadow: 0 0 8px rgba(56,189,248,0.9);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 26px;
+      font-size: 14px;
+      color: #9fb7ff;
+    }
+
+    .nav-links a:hover {
+      color: #e5f3ff;
+    }
+
+    .nav-right {
+      font-size: 13px;
+    }
+
+    .btn-chip {
+      padding: 7px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,255,0.3);
+      background: rgba(15,23,42,0.5);
+      color: #c7d2fe;
+      cursor: pointer;
+    }
+
+    /* 메인 영역 */
+    main {
+      padding-bottom: 50px;
+    }
+
+    .content-shell {
+      border-radius: 24px;
+      padding: 20px 24px 26px;
+      background: radial-gradient(circle at top left, rgba(56,189,248,0.16), transparent 55%),
+                  #020617;
+      border: 1px solid rgba(79,70,229,0.45);
+      box-shadow: 0 18px 40px rgba(15,23,42,0.95);
+      margin-bottom: 18px;
+    }
+
+    .content-top-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: #9ca3ff;
+      margin-bottom: 14px;
+    }
+
+    .traffic-lights {
+      display: flex;
+      gap: 6px;
+    }
+    .traffic-lights span {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+    }
+    .traffic-lights span:nth-child(1){ background:#f97373; }
+    .traffic-lights span:nth-child(2){ background:#facc15; }
+    .traffic-lights span:nth-child(3){ background:#22c55e; }
+
+    /* 메인 2컬럼 */
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .hero-text h1 {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+    .hero-text h1 span {
+      color: #6ee7b7;
+    }
+    .hero-text p.lead {
+      font-size: 14px;
+      color: #a5b4fc;
+      margin-bottom: 28px;
+    }
+
+    /* 라이선스 박스 */
+    .license-box {
+      margin-top: 10px;
+      padding: 20px 22px 22px;
+      border-radius: 22px;
+      background: radial-gradient(circle at top left, rgba(37,99,235,0.4), rgba(15,23,42,1));
+      border: 1px solid rgba(129,140,248,0.6);
+      box-shadow: 0 18px 30px rgba(15,23,42,0.9);
+    }
+
+    .license-title {
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .license-desc {
+      font-size: 13px;
+      color: #c4d0ff;
+      margin-bottom: 16px;
+    }
+
+    .license-input-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .license-input-wrap {
+      flex: 1;
+      background: #020617;
+      border-radius: 999px;
+      padding: 3px 6px 3px 14px;
+      border: 1px solid rgba(30,64,175,0.9);
+      display: flex;
+      align-items: center;
+    }
+
+    .license-input {
+      border: none;
+      outline: none;
+      background: transparent;
+      color: #e5f3ff;
+      font-size: 13px;
+      width: 100%;
+    }
+
+    .license-btn {
+      width: 76px;
+      height: 36px;
+      border-radius: 999px;
+      border: none;
+      background: radial-gradient(circle at 30% 30%, #93c5fd, #2563eb);
+      color: #0b1120;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 0 14px rgba(37,99,235,0.9);
+    }
+
+    .license-hint {
+      font-size: 11px;
+      color: #9ca3ff;
+      margin-bottom: 12px;
+    }
+
+    .license-link {
+      font-size: 12px;
+      color: #6ee7b7;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    /* 오른쪽 이미지 카드 */
+    .hero-image-card {
+      border-radius: 24px;
+      overflow: hidden;
+      background: #020617;
+      border: 1px solid rgba(37,99,235,0.75);
+      padding: 8px;
+      box-shadow: 0 18px 30px rgba(15,23,42,0.9);
+    }
+    .hero-image-inner {
+      border-radius: 20px;
+      overflow: hidden;
+      height: 260px;
+      background: #020617;
+    }
+    .hero-image-inner img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* About 박스 */
+    .about-box {
+      border-radius: 22px;
+      background: #020617;
+      border: 1px solid rgba(55,65,194,0.8);
+      padding: 16px 22px 20px;
+      color: #c4d0ff;
+      font-size: 13px;
+    }
+    .about-title {
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #e5f3ff;
+    }
+
+    /* 반응형 */
+    @media (max-width: 900px) {
+      .main-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    @media (max-width: 640px) {
+      .top-nav {
+        padding: 0 16px;
+        font-size: 13px;
+      }
+      .nav-links { display:none; }
+      .content-shell { padding: 16px 16px 20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-nav-wrap">
+    <div class="container top-nav">
+      <div class="logo">
+        <div class="logo-dot"></div>
+        rlnl WEB
       </div>
-    </nav>
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#license">License</a>
+        <a href="#about">About</a>
+      </div>
+      <div class="nav-right">
+        <button class="btn-chip">Google 로그인</button>
+      </div>
+    </div>
+  </div>
 
-    <!-- 통짜 메인 섹션 -->
-    <section id="top" class="hero is-fullheight bg-root">
-      <div class="hero-body">
-        <div class="container is-max-desktop">
-
-          <!-- 큰 패널 전체 -->
-          <div class="panel-shell">
-            <!-- 작은 타이틀 바 (좌 상단) -->
-            <div class="panel-header">
-              <div class="win-dots">
-                <span></span><span></span><span></span>
-              </div>
-              <span class="panel-header-label">Discord License · rlnl</span>
-            </div>
-
-            <!-- 메인 내용 2컬럼 -->
-            <div class="columns is-vcentered panel-main">
-              <!-- 좌측 텍스트 + 입력 -->
-              <div class="column is-7">
-                <p class="main-title">
-                  디스코드에서 끝내는<br />
-                  라이선스 관리, <span class="accent">rlnl.</span>
-                </p>
-                <p class="main-subtitle">
-                  디스코드 전용 라이선스 관리 봇입니다.<br />
-                  실제 서버에 적용 가능한 구조로 운영 중이며,<br />
-                  신규 기능은 점진적으로 추가되고 있습니다.
-                </p>
-
-                <div id="license" class="license-card">
-                  <p class="license-title">라이선스 상태 확인</p>
-                  <p class="license-desc">
-                    결제 후 발급받은 라이선스 키를 입력하면,<br />
-                    유효 여부와 만료일을 확인할 수 있습니다.
-                  </p>
-
-                  <div class="license-input-row">
-                    <div class="license-input-wrap">
-                      <input
-                        type="text"
-                        class="license-input"
-                        placeholder="예) RLNL-XXXX-XXXX"
-                      />
-                    </div>
-                    <button class="license-btn">확인</button>
-                  </div>
-
-                  <p class="license-hint">Google 로그인 후 사용 가능합니다.</p>
-                  <a
-                    href="https://discord.gg/dsZjSb8JS2"
-                    target="_blank"
-                    class="license-link"
-                  >
-                    디스코드에서 라이선스 문의하기
-                  </a>
-                </div>
-              </div>
-
-              <!-- 우측 이미지 카드 -->
-              <div class="column is-5">
-                <div class="img-card">
-                  <div class="img-inner">
-                    <!-- 여기 이미지 변경 -->
-                    <img src="your-image.jpg" alt="preview" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- About 박스 (큰 패널 아래 통짜) -->
-          <div id="about" class="about-shell">
-            <p class="about-title">About rlnl</p>
-            <p class="about-text">
-              RLNL 디스코드 서버에서 라이선스를 간편하게 관리할 수 있도록 설계된 봇입니다.
-              역할 연동, 만료 알림, 웹 패널 연동 등을 단계적으로 도입할 예정입니다.
-            </p>
-          </div>
+  <main class="container">
+    <!-- 메인 카드 -->
+    <section class="content-shell" id="home">
+      <div class="content-top-title">
+        <div class="traffic-lights">
+          <span></span><span></span><span></span>
         </div>
+        <div>Discord License · rlnl</div>
       </div>
 
-      <!-- 하단 푸터 텍스트는 패널 밖 간단하게 -->
-      <footer class="footer bg-root footer-lite">
-        <div class="content has-text-centered footer-text">
-          <p>
-            <span class="has-text-weight-bold">rlnl</span><br />
-            개인용 디스코드 툴 패널<br />
-            &copy; <span id="cp-year"></span> Nana. All Rights Reserved.
+      <div class="main-grid">
+        <!-- 왼쪽 텍스트 + 입력 -->
+        <div class="hero-text">
+          <h1>디스코드에서 끝내는<br>라이선스 관리, <span>rlnl.</span></h1>
+          <p class="lead">
+            디스코드 전용 라이선스 관리 봇입니다. 실제 서비스에 적용 가능한 구조로 운영 중이며,
+            신규 기능은 점진적으로 추가되고 있습니다.
           </p>
+
+          <div class="license-box" id="license">
+            <div class="license-title">라이선스 상태 확인</div>
+            <div class="license-desc">
+              결제 후 발급받은 라이선스 키를 입력하면, 유효 여부와 만료일을 확인할 수 있습니다.
+            </div>
+
+            <div class="license-input-row">
+              <div class="license-input-wrap">
+                <input class="license-input" placeholder="예) RLNL-XXXX-XXXX" />
+              </div>
+              <button class="license-btn">확인</button>
+            </div>
+
+            <div class="license-hint">Google 로그인 후 사용 가능합니다.</div>
+            <div class="license-link">디스코드에서 라이선스 문의하기</div>
+          </div>
         </div>
-      </footer>
+
+        <!-- 오른쪽 이미지 -->
+        <aside class="hero-image-card">
+          <div class="hero-image-inner">
+            <!-- 여기에 원하는 이미지 경로 넣기 -->
+            <img src="your-image.jpg" alt="preview">
+          </div>
+        </aside>
+      </div>
     </section>
 
-    <!-- 스크립트 (기존 rlnl JS 거의 유지) -->
-    <script>
-      // navbar burger 토글
-      document.addEventListener("DOMContentLoaded", () => {
-        const burger = document.querySelector(".navbar-burger");
-        const menu = document.querySelector("#navbarMenu");
-
-        if (burger && menu) {
-          burger.addEventListener("click", () => {
-            burger.classList.toggle("is-active");
-            menu.classList.toggle("is-active");
-          });
-        }
-      });
-
-      // back to top
-      var btn = $("#backtotop");
-
-      $(window).scroll(function () {
-        if ($(window).scrollTop() > 100) {
-          btn.addClass("show");
-        } else {
-          btn.removeClass("show");
-        }
-      });
-
-      btn.on("click", function (e) {
-        e.preventDefault();
-        $("html, body").animate({ scrollTop: 0 }, 300);
-      });
-
-      // copyright year
-      document.getElementById("cp-year").innerHTML = new Date().getFullYear();
-    </script>
-  </body>
+    <!-- About 박스 -->
+    <section class="about-box" id="about">
+      <div class="about-title">About rlnl</div>
+      <p>
+        RLNL 디스코드 서버에서 라이선스를 간편하게 관리할 수 있도록 설계된 봇입니다.
+        역할 연동, 만료 알림, 웹 패널 연동 등을 단계적으로 도입할 예정입니다.
+      </p>
+    </section>
+  </main>
+</body>
 </html>
