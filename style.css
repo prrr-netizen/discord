@@ -1,66 +1,83 @@
-/* 기본 배경 / 글자 */
+/* 기본 배경 / 글자: 카지노 네온 느낌 */
 html,
 body {
-  background: radial-gradient(circle at top, #020617 0, #020012 40%, #000010 100%);
+  background:
+    radial-gradient(circle at 0% 0%, #1d243f 0, transparent 55%),
+    radial-gradient(circle at 100% 100%, #130525 0, transparent 55%),
+    #020617;
   color: #e5f3ff;
 }
 
 .bg-root {
-  background: radial-gradient(circle at top, #020617 0, #020012 60%);
+  background: transparent;
 }
 
 /* 네비 통짜 바 */
 .nav-shell {
-  background: linear-gradient(180deg, #020617, #020617);
+  background: linear-gradient(180deg, rgba(3, 7, 18, 0.96), rgba(3, 7, 18, 0.98));
   border-bottom: 1px solid rgba(148, 163, 255, 0.18);
-  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.9);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 1);
 }
 
 .brand-text {
-  font-weight: 700;
-  color: #f9fafb !important;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #fef9c3 !important;
 }
 
 .navbar-item,
 .navbar-link {
   color: #9ca3ff !important;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
 }
 
 .navbar-item.is-tab:hover {
-  color: #e5f3ff !important;
+  color: #fef9c3 !important;
 }
 
-/* 스크롤 시 색 전환용 */
+/* 상단 헤더 버튼 (로그인/회원가입) */
+.header-btn-outline {
+  background: transparent;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 255, 0.55);
+  color: #c7d2fe;
+  font-size: 0.75rem;
+  margin-right: 0.4rem;
+}
+
+.header-btn-primary {
+  background: linear-gradient(135deg, #f97316, #e11d48);
+  border-radius: 999px;
+  border: none;
+  color: #020617;
+  font-size: 0.75rem;
+  font-weight: 700;
+  box-shadow: 0 0 16px rgba(248, 113, 113, 0.9);
+}
+
+/* 스크롤 시 색 전환용 (선택) */
 .nav-w {
   background: #f9fafb !important;
-  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.3);
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.4);
 }
 .nav-dark {
   color: #020617 !important;
 }
 
-/* 상단 Google 버튼 */
-.google-btn {
-  background: radial-gradient(circle at 30% 30%, #93c5fd, #2563eb);
-  color: #020617;
-  border-radius: 999px;
-  border: none;
-  font-size: 0.75rem;
-  padding: 0.35rem 0.95rem;
-  box-shadow: 0 0 12px rgba(37, 99, 235, 0.9);
-}
-
 /* 메인 패널(통짜 카드) */
 .panel-shell {
   margin-top: 4.5rem;
-  padding: 1.6rem 1.8rem 1.8rem;
-  border-radius: 1.6rem;
+  padding: 1.7rem 1.9rem 1.9rem;
+  border-radius: 1.8rem;
   background:
-    radial-gradient(circle at top left, rgba(56, 189, 248, 0.16), transparent 55%),
+    radial-gradient(circle at top left, rgba(251, 191, 36, 0.2), transparent 55%),
+    radial-gradient(circle at bottom right, rgba(59, 130, 246, 0.16), transparent 55%),
     #020617;
-  border: 1px solid rgba(79, 70, 229, 0.6);
-  box-shadow: 0 25px 45px rgba(15, 23, 42, 0.95);
+  border: 1px solid rgba(55, 65, 194, 0.9);
+  box-shadow:
+    0 26px 60px rgba(0, 0, 0, 0.95),
+    0 0 0 1px rgba(15, 23, 42, 0.8);
 }
 
 /* 패널 상단 작은 헤더 */
@@ -80,7 +97,7 @@ body {
 }
 .win-dots span:nth-child(1) { background: #f97373; }
 .win-dots span:nth-child(2) { background: #facc15; }
-win-dots span:nth-child(3) { background: #22c55e; }
+.win-dots span:nth-child(3) { background: #22c55e; }
 
 .panel-header-label {
   font-size: 0.8rem;
@@ -89,38 +106,98 @@ win-dots span:nth-child(3) { background: #22c55e; }
 
 /* 타이틀 / 서브텍스트 */
 .main-title {
-  font-size: 2rem;
-  font-weight: 700;
-  color: #f9fafb;
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #fefce8;
   line-height: 1.3;
 }
 .main-title .accent {
-  color: #6ee7b7;
+  color: #facc15;
 }
 .main-subtitle {
-  margin-top: 0.75rem;
+  margin-top: 0.6rem;
   font-size: 0.9rem;
-  color: #a5b4fc;
+  color: #c7d2fe;
 }
 
-/* 라이선스 카드 */
+/* 히어로 CTA */
+.hero-cta {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.btn-primary-hero {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 1.6rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: #020617;
+  font-size: 0.9rem;
+  font-weight: 800;
+  box-shadow: 0 0 18px rgba(34, 197, 94, 0.9);
+}
+
+.hero-tag {
+  font-size: 0.78rem;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(96, 165, 250, 0.7);
+  background: rgba(15, 23, 42, 0.9);
+  color: #bfdbfe;
+}
+
+/* 라이선스 카드 (카지노 서버 카드 느낌) */
 .license-card {
-  margin-top: 1.8rem;
-  padding: 1.4rem 1.5rem 1.6rem;
-  border-radius: 1.5rem;
-  background: radial-gradient(circle at top left, rgba(37, 99, 235, 0.55), #020617);
-  border: 1px solid rgba(129, 140, 248, 0.7);
-  box-shadow: 0 18px 30px rgba(15, 23, 42, 0.9);
+  margin-top: 1.6rem;
+  padding: 1.4rem 1.5rem 1.5rem;
+  border-radius: 1.4rem;
+  background:
+    radial-gradient(circle at top left, rgba(37, 99, 235, 0.6), transparent 60%),
+    #020617;
+  border: 1px solid rgba(129, 140, 248, 0.9);
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.95);
+  position: relative;
+  overflow: hidden;
+}
+
+.license-card::before {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  background: radial-gradient(circle at 0% 0%, rgba(251, 191, 36, 0.18), transparent 60%);
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.license-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .license-title {
-  font-weight: 600;
-  margin-bottom: 0.35rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
 }
+
+.license-badge {
+  font-size: 0.7rem;
+  padding: 0.18rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(34, 197, 94, 0.15);
+  color: #4ade80;
+  border: 1px solid rgba(34, 197, 94, 0.8);
+}
+
 .license-desc {
   font-size: 0.8rem;
-  color: #c7d2fe;
+  color: #e5e7eb;
   margin-bottom: 0.9rem;
+  margin-top: 0.2rem;
 }
 
 .license-input-row {
@@ -132,7 +209,7 @@ win-dots span:nth-child(3) { background: #22c55e; }
 
 .license-input-wrap {
   flex: 1;
-  background: #020617;
+  background: rgba(15, 23, 42, 0.95);
   border-radius: 999px;
   padding: 0.3rem 0.9rem;
   border: 1px solid rgba(30, 64, 175, 0.9);
@@ -148,38 +225,51 @@ win-dots span:nth-child(3) { background: #22c55e; }
 }
 
 .license-btn {
-  min-width: 70px;
+  min-width: 74px;
   height: 34px;
   border-radius: 999px;
   border: none;
   font-size: 0.85rem;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
   background: radial-gradient(circle at 30% 30%, #bfdbfe, #1d4ed8);
   color: #020617;
   box-shadow: 0 0 14px rgba(37, 99, 235, 0.9);
 }
 
-.license-hint {
+.license-meta {
+  display: flex;
+  justify-content: space-between;
   font-size: 0.75rem;
-  color: #9ca3ff;
-  margin-top: 0.15rem;
-  margin-bottom: 0.55rem;
+  color: #e5e7eb;
+  margin-bottom: 0.4rem;
+}
+
+.license-meta strong {
+  color: #facc15;
+}
+
+.license-hint {
+  font-size: 0.72rem;
+  color: #c4b5fd;
+  margin-bottom: 0.4rem;
 }
 
 .license-link {
   font-size: 0.78rem;
-  color: #6ee7b7;
+  color: #5eead4;
   text-decoration: underline;
 }
 
-/* 오른쪽 이미지 카드 */
+/* 오른쪽 이미지 카드 + 오버레이 */
 .img-card {
   border-radius: 1.5rem;
   padding: 0.5rem;
-  border: 1px solid rgba(37, 99, 235, 0.9);
-  background: #020617;
-  box-shadow: 0 18px 30px rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(248, 250, 252, 0.08);
+  background: radial-gradient(circle at top, rgba(59, 130, 246, 0.35), #020617);
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.95);
+  position: relative;
+  overflow: hidden;
 }
 
 .img-inner {
@@ -195,23 +285,49 @@ win-dots span:nth-child(3) { background: #22c55e; }
   object-fit: cover;
 }
 
+.img-overlay {
+  position: absolute;
+  bottom: 0.9rem;
+  left: 1.1rem;
+  right: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.72rem;
+}
+
+.img-tag {
+  align-self: flex-start;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.9);
+  color: #facc15;
+  border: 1px solid rgba(250, 204, 21, 0.8);
+}
+
+.img-sub {
+  color: #e5e7eb;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+
 /* 아래 About 통짜 박스 */
 .about-shell {
-  margin-top: 1.4rem;
-  padding: 1rem 1.6rem 1.2rem;
+  margin-top: 1.6rem;
+  padding: 1rem 1.6rem 1.3rem;
   border-radius: 1.5rem;
-  background: #020617;
+  background: rgba(3, 7, 18, 0.98);
   border: 1px solid rgba(55, 65, 194, 0.9);
-  box-shadow: 0 18px 30px rgba(15, 23, 42, 0.9);
+  box-shadow: 0 18px 30px rgba(15, 23, 42, 1);
 }
 
 .about-title {
-  font-weight: 600;
+  font-weight: 700;
   margin-bottom: 0.4rem;
+  color: #fefce8;
 }
 .about-text {
   font-size: 0.8rem;
-  color: #c7d2fe;
+  color: #e5e7eb;
 }
 
 /* 푸터 */
@@ -260,6 +376,6 @@ win-dots span:nth-child(3) { background: #22c55e; }
     margin-top: 0.6rem;
   }
   .img-inner {
-    height: 200px;
+    height: 220px;
   }
 }
