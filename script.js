@@ -7,7 +7,7 @@ const matches = [
   { id:3, type:"football", league:"CORE 리그 · 축구", title:"CITY SC vs UNITED SC", time:"내일 19:00", desc:"승부 예측 참여형 이벤트", tag:["축구","이벤트"], cost:80 },
   { id:4, type:"mini", league:"MINI GAME", title:"룰렛 스핀 이벤트", time:"상시 참여 가능", desc:"룰렛 돌려 랜덤 보상 받기", tag:["룰렛","랜덤"], cost:50 },
   { id:5, type:"esports", league:"e-ARENA · MOBA", title:"CORE 챔피언십", time:"이번 주말", desc:"승리팀 예측 참여형 포인트 이벤트", tag:["MOBA","e스포츠"], cost:120 },
-];
+};
 
 const userInfoEl      = document.getElementById("user-info");
 const logoutBtn       = document.getElementById("logout-btn");
