@@ -5,11 +5,52 @@
   <title>CORE PLAY - 홈</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
+
+    /* ===== 공통 버튼 ===== */
+    .btn{
+      border:none;
+      border-radius:999px;
+      padding:8px 16px;
+      font-size:13px;
+      cursor:pointer;
+      font-weight:600;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:6px;
+      transition:transform .12s ease, box-shadow .12s ease, background .12s ease, color .12s ease;
+    }
+    .btn-primary{
+      background:linear-gradient(135deg,#22c55e,#16a34a);
+      color:#020617;
+      box-shadow:0 0 18px rgba(34,197,94,.7);
+    }
+    .btn-primary:hover{
+      transform:translateY(-1px);
+      box-shadow:0 0 26px rgba(34,197,94,.9);
+    }
+    .btn-outline{
+      background:rgba(15,23,42,.9);
+      color:#e5e7eb;
+      border:1px solid rgba(148,163,184,.8);
+      box-shadow:0 0 10px rgba(15,23,42,.9);
+    }
+    .btn-outline:hover{
+      background:radial-gradient(circle at 0 0,#22c55e26,transparent 55%);
+    }
+
+    /* ===== HOME 전체 그라뮬라 네온 ===== */
     body{
       font-family:'Segoe UI',system-ui,sans-serif;
       background:
-        radial-gradient(circle at 0% 0%, #22c55e18, transparent 55%),
-        radial-gradient(circle at 100% 0%, #3b82f618, transparent 55%),
+        radial-gradient(circle at 0% 0%, #22c55e26, transparent 55%),
+        radial-gradient(circle at 100% 0%, #3b82f626, transparent 55%),
+        radial-gradient(circle at 50% 120%, #0ea5e955, #020617 70%),
         #020617;
       color:#e5e7eb;
       min-height:100vh;
@@ -17,86 +58,100 @@
       justify-content:center;
       align-items:flex-start;
       padding:26px 12px;
-      font-size:15px;
+      font-size:14px;
     }
     .app{
       width:100%;
       max-width:1100px;
       background:
-        radial-gradient(circle at top, #020617 0, #020617 35%, #020617 40%, #020617 55%),
-        radial-gradient(circle at 10% -10%, rgba(34,197,94,.25), transparent 55%),
-        radial-gradient(circle at 90% -10%, rgba(59,130,246,.25), transparent 55%),
+        radial-gradient(circle at -10% -10%, rgba(34,197,94,.3), transparent 60%),
+        radial-gradient(circle at 110% -10%, rgba(59,130,246,.35), transparent 60%),
+        radial-gradient(circle at 50% 120%, rgba(14,165,233,.35), #020617 70%),
         #020617;
       border-radius:20px;
-      border:1px solid rgba(148,163,184,.45);
-      box-shadow:0 0 70px rgba(37,99,235,.55),0 26px 46px rgba(0,0,0,.95);
+      border:1px solid rgba(148,163,184,.6);
+      box-shadow:
+        0 0 60px rgba(59,130,246,.6),
+        0 26px 46px rgba(0,0,0,.95);
       overflow:hidden;
       position:relative;
     }
 
+    /* 헤더 */
     .header{
-      padding:18px 22px;
-      border-bottom:1px solid rgba(55,65,81,.7);
+      padding:16px 20px;
+      border-bottom:1px solid rgba(55,65,81,.8);
       display:flex;
       align-items:center;
       justify-content:space-between;
-      background:linear-gradient(135deg,#020617,#020617 50%,#0b1120);
+      background:linear-gradient(135deg,#020617,#020617 45%,#020617,#0b1120);
     }
-    .logo-area{display:flex;align-items:center;gap:10px;}
+    .logo-area{
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
     .logo-badge{
-      width:34px;height:34px;border-radius:11px;
+      width:30px;
+      height:30px;
+      border-radius:9px;
       background:radial-gradient(circle at 30% 0,#22c55e,#0f172a);
-      display:flex;justify-content:center;align-items:center;
-      font-weight:800;font-size:18px;
-      box-shadow:0 0 18px rgba(34,197,94,.7);
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      font-weight:800;
+      font-size:16px;
+      box-shadow:0 0 16px rgba(34,197,94,.9);
     }
-    .logo-text-main{font-weight:800;font-size:19px;letter-spacing:.03em}
+    .logo-text-main{font-weight:800;font-size:17px;letter-spacing:.03em}
     .logo-text-sub{font-size:11px;color:#9ca3af}
-    .header-right{display:flex;align-items:center;gap:8px;}
+    .header-right{
+      display:flex;
+      align-items:center;
+      gap:6px;
+    }
     .badge-online{
-      font-size:11px;padding:4px 10px;border-radius:999px;
-      border:1px solid rgba(52,211,153,.6);
-      background:rgba(22,163,74,.2);color:#bbf7d0;
-      text-shadow:0 0 4px rgba(34,197,94,.7);
+      font-size:10px;
+      padding:3px 8px;
+      border-radius:999px;
+      border:1px solid rgba(52,211,153,.8);
+      background:rgba(22,163,74,.22);
+      color:#bbf7d0;
+      text-shadow:0 0 4px rgba(34,197,94,1);
     }
-    .user-info{font-size:13px;text-align:right;}
-    .user-info span{color:#22c55e;}
-    .btn{
-      border:none;border-radius:999px;
-      padding:7px 14px;font-size:13px;cursor:pointer;
-      font-weight:600;display:inline-flex;align-items:center;justify-content:center;
-      gap:6px;transition:transform .12s ease, box-shadow .12s ease, background .12s ease;
+    .user-info{
+      font-size:12px;
+      text-align:right;
     }
-    .btn-primary{
-      background:linear-gradient(135deg,#22c55e,#16a34a);
-      color:#020617;
-      box-shadow:0 0 16px rgba(34,197,94,.55);
-    }
-    .btn-primary:hover{transform:translateY(-1px);box-shadow:0 0 22px rgba(34,197,94,.75);}
-    .btn-outline{
-      background:transparent;color:#e5e7eb;
-      border:1px solid rgba(148,163,184,.7);
-    }
-    .btn-outline:hover{background:rgba(15,23,42,.95);}
+    .user-info span{color:#22c55e}
 
+    /* 메인 전체: 위 입력 / 중앙 실시간 / 아래 플랜 */
     .main{
       display:flex;
       flex-direction:column;
       gap:16px;
-      padding:18px 20px 20px;
+      padding:16px 18px 18px;
     }
 
     .section-card{
       background:linear-gradient(145deg,rgba(15,23,42,.96),rgba(15,23,42,.98));
-      border-radius:14px;
-      border:1px solid rgba(55,65,81,.95);
-      padding:16px 16px 14px;
-      box-shadow:0 0 30px rgba(15,23,42,.8),0 0 18px rgba(15,23,42,.7);
+      border-radius:12px;
+      border:1px solid rgba(55,65,81,1);
+      padding:13px 13px 11px;
+      box-shadow:0 0 24px rgba(15,23,42,.95);
     }
-    .section-title{font-size:16px;font-weight:600;margin-bottom:8px;}
-    .section-sub{font-size:12px;color:#9ca3af;margin-bottom:10px;}
+    .section-title{
+      font-size:14px;
+      font-weight:600;
+      margin-bottom:4px;
+    }
+    .section-sub{
+      font-size:12px;
+      color:#9ca3af;
+      margin-bottom:6px;
+    }
 
-    /* 상단: 디코 + 닉네임 + 지갑 한 줄 */
+    /* 상단: 디코 + 닉네임 + 지갑 */
     .top-account-grid{
       display:grid;
       grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);
@@ -113,27 +168,56 @@
       background:radial-gradient(circle at 0 0,#1d4ed822,transparent 55%);
     }
     .discord-status{font-size:12px;color:#9ca3af;}
-    .auth-box{display:flex;flex-direction:column;gap:6px;margin-top:4px;}
-    .auth-row{display:flex;gap:6px;}
-    .auth-row input{
-      flex:1;padding:9px 11px;border-radius:999px;
-      border:1px solid rgba(75,85,99,.9);
-      background:#020617;color:#e5e7eb;font-size:13px;
+    .auth-box{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      margin-top:4px;
     }
-    .auth-help{font-size:11px;color:#6b7280;}
+    .auth-row{
+      display:flex;
+      gap:6px;
+    }
+    .auth-row input{
+      flex:1;
+      padding:9px 11px;
+      border-radius:999px;
+      border:1px solid rgba(75,85,99,.95);
+      background:#020617;
+      color:#e5e7eb;
+      font-size:13px;
+      box-shadow:0 0 10px rgba(15,23,42,.9) inset;
+    }
+    .auth-help{
+      font-size:11px;
+      color:#6b7280;
+    }
 
     .wallet{
-      display:flex;justify-content:space-between;align-items:center;
-      padding:10px 11px;border-radius:12px;
-      background:radial-gradient(circle at 0 0,#22c55e24,transparent 55%),
-                 radial-gradient(circle at 100% 0,#3b82f618,transparent 60%);
-      border:1px solid rgba(55,65,81,.95);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:10px 11px;
+      border-radius:12px;
+      background:
+        radial-gradient(circle at 0 0,#22c55e33,transparent 60%),
+        radial-gradient(circle at 100% 0,#3b82f622,transparent 60%),
+        #020617;
+      border:1px solid rgba(55,65,81,1);
       box-shadow:0 0 18px rgba(34,197,94,.5);
     }
-    .wallet-balance{font-size:22px;font-weight:700;color:#22c55e;}
-    .wallet-right{display:flex;gap:6px;}
+    .wallet-balance{
+      font-size:22px;
+      font-weight:700;
+      color:#22c55e;
+      text-shadow:0 0 8px rgba(34,197,94,.9);
+    }
+    .wallet-right{
+      display:flex;
+      gap:6px;
+    }
 
-    /* 중앙 실시간 박스 */
+    /* 중앙 실시간 */
     .live-main{
       position:relative;
       border-radius:18px;
@@ -170,57 +254,89 @@
     .video-title{font-weight:600;font-size:14px;margin-bottom:2px;}
     .video-meta{font-size:12px;color:#d1d5db;}
 
-    /* 아래 플랜 카드: 1개 1개 1개 1개... */
+    /* 아래 플랜 1개 1개 1개 1개... */
     .plan-list{
       display:flex;
-      flex-direction:column;
-      gap:12px;
+      flex-direction:column;   /* 위→아래로 하나씩 */
+      gap:12px;                /* 카드 사이 간격 */
     }
+
     .plan-card{
       border-radius:16px;
-      border:1px solid rgba(55,65,81,.95);
-      background:radial-gradient(circle at 0 0,#0ea5e922,transparent 55%),rgba(15,23,42,.98);
+      border:1px solid rgba(148,163,184,.7);
+      background:
+        radial-gradient(circle at 0 0,#22c55e22,transparent 60%),
+        rgba(15,23,42,.98);
       padding:14px 14px;
       display:flex;
       flex-direction:column;
-      gap:6px;
+      gap:8px;
       font-size:14px;
+      box-shadow:0 0 18px rgba(15,23,42,.9);
     }
+
     .plan-header{
       display:flex;
       justify-content:space-between;
       align-items:center;
+      gap:10px;
     }
-    .plan-title{font-size:15px;font-weight:600;}
+
+    .plan-title-wrap{
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+
+    .plan-title{
+      font-size:15px;
+      font-weight:700;
+    }
+
     .plan-tag{
       font-size:11px;
       padding:3px 8px;
       border-radius:999px;
-      border:1px solid rgba(148,163,184,.7);
+      border:1px solid rgba(148,163,184,.8);
       color:#e5e7eb;
+      background:rgba(15,23,42,.95);
     }
-    .plan-desc{font-size:13px;color:#9ca3af;}
+
+    .plan-desc{
+      font-size:13px;
+      color:#cbd5f5;
+    }
+
     .plan-footer{
       display:flex;
       justify-content:space-between;
       align-items:center;
-      margin-top:6px;
+      margin-top:2px;
       font-size:12px;
       color:#9ca3af;
     }
-    .plan-meta{font-size:12px;color:#9ca3af;}
 
+    .plan-card button[disabled]{
+      opacity:.6;
+      cursor:default;
+      box-shadow:none;
+    }
+
+    /* 토스트 */
     .toast{
-      position:fixed;left:50%;bottom:24px;
+      position:fixed;
+      left:50%;
       transform:translateX(-50%);
-      background:rgba(15,23,42,.95);
-      color:#e5e7eb;
-      padding:8px 14px;
+      bottom:18px;
+      background:#020617;
       border-radius:999px;
+      border:1px solid rgba(55,65,81,1);
+      padding:6px 11px;
       font-size:12px;
-      border:1px solid rgba(75,85,99,.9);
+      color:#e5e7eb;
       display:none;
       z-index:90;
+      box-shadow:0 0 16px rgba(15,23,42,.95);
     }
 
     /* 모달 */
@@ -362,7 +478,7 @@
       <div class="section-title">실시간 룸</div>
       <div class="section-sub">실제 방송 대신 데모 영상/클립을 넣을 수 있는 영역입니다.</div>
       <div class="live-main">
-        <!-- demo.mp4 대신 네 파일 경로 -->
+        <!-- demo.mp4 대신 네 영상 경로 -->
         <video src="demo.mp4" autoplay muted loop playsinline></video>
         <div class="video-overlay-top">
           <div class="live-pill">LIVE</div>
@@ -381,51 +497,71 @@
       <div class="section-sub">플랜 카드들을 한 줄씩 세로로 나열한 영역입니다.</div>
 
       <div class="plan-list">
+        <!-- 카드 1 -->
         <div class="plan-card">
           <div class="plan-header">
-            <div class="plan-title">숫자 맞추기</div>
-            <div class="plan-tag">미니게임</div>
-          </div>
-          <div class="plan-desc">1~5 랜덤 숫자를 맞추면 2배 지급되는 기본 포인트 게임.</div>
-          <div class="plan-footer">
-            <span class="plan-meta">참여비 50P · 성공 시 100P</span>
+            <div class="plan-title-wrap">
+              <div class="plan-title">숫자 맞추기</div>
+              <div class="plan-tag">미니게임</div>
+            </div>
             <button class="btn btn-primary" data-game="guess">플레이</button>
           </div>
+          <div class="plan-desc">
+            1~5 랜덤 숫자를 맞추면 2배 지급되는 기본 포인트 게임.
+          </div>
+          <div class="plan-footer">
+            <span class="plan-meta">참여비 50P · 성공 시 100P</span>
+          </div>
         </div>
 
+        <!-- 카드 2 -->
         <div class="plan-card">
           <div class="plan-header">
-            <div class="plan-title">하이로우 카드</div>
-            <div class="plan-tag">카드 게임</div>
-          </div>
-          <div class="plan-desc">기준 숫자보다 높음/낮음만 고르는 심플 포인트 카드 게임.</div>
-          <div class="plan-footer">
-            <span class="plan-meta">참여비 100P · 성공 시 160P</span>
+            <div class="plan-title-wrap">
+              <div class="plan-title">하이로우 카드</div>
+              <div class="plan-tag">카드 게임</div>
+            </div>
             <button class="btn btn-primary" data-game="highlow">플레이</button>
           </div>
+          <div class="plan-desc">
+            기준 숫자보다 높음/낮음만 고르는 심플 포인트 카드 게임.
+          </div>
+          <div class="plan-footer">
+            <span class="plan-meta">참여비 100P · 성공 시 160P</span>
+          </div>
         </div>
 
+        <!-- 카드 3 -->
         <div class="plan-card">
           <div class="plan-header">
-            <div class="plan-title">실시간 미션 슬롯</div>
-            <div class="plan-tag">실시간</div>
+            <div class="plan-title-wrap">
+              <div class="plan-title">실시간 미션 슬롯</div>
+              <div class="plan-tag">실시간</div>
+            </div>
+            <button class="btn btn-outline" disabled>준비중</button>
           </div>
-          <div class="plan-desc">실시간 룸에서 특정 구간에만 열리는 미션을 가정한 슬롯.</div>
+          <div class="plan-desc">
+            실시간 룸에서 특정 구간에만 열리는 미션을 가정한 슬롯.
+          </div>
           <div class="plan-footer">
             <span class="plan-meta">참여비 30P · 성공 시 60P</span>
-            <button class="btn btn-outline">준비중</button>
           </div>
         </div>
 
+        <!-- 카드 4 -->
         <div class="plan-card">
           <div class="plan-header">
-            <div class="plan-title">랜덤 리액션 보상</div>
-            <div class="plan-tag">연동</div>
+            <div class="plan-title-wrap">
+              <div class="plan-title">랜덤 리액션 보상</div>
+              <div class="plan-tag">연동</div>
+            </div>
+            <button class="btn btn-outline" disabled>준비중</button>
           </div>
-          <div class="plan-desc">리액션/이모지 응답에 따라 포인트 드랍이 발생하는 연동 영역.</div>
+          <div class="plan-desc">
+            리액션/이모지 응답에 따라 포인트 드랍이 발생하는 연동 영역.
+          </div>
           <div class="plan-footer">
             <span class="plan-meta">참여비 20P · 성공 시 80P</span>
-            <button class="btn btn-outline">준비중</button>
           </div>
         </div>
 
@@ -436,7 +572,7 @@
 
 <div class="toast" id="toast"></div>
 
-<!-- 모달 통짜 -->
+<!-- 충전 모달 -->
 <div class="modal-backdrop" id="charge-modal-backdrop">
   <div class="modal-card">
     <div class="modal-header">
@@ -577,7 +713,6 @@
       showToast("로그인 후 이용해 주세요.");
       return;
     }
-    // 모달 내용 채우기
     modalDiscordUser.textContent = state.discordUser || "연동되지 않음";
     modalNickname.textContent = state.nickname || "-";
     modalPoints.textContent = `${state.points}P`;
@@ -594,7 +729,6 @@
     if(e.target === modalBackdrop) closeChargeModal();
   });
   modalDiscordBtn.addEventListener("click",()=>{
-    // 그냥 디스코드 초대/봇 링크 여는 자리 (임시 alert)
     alert("여기 디스코드 초대/봇 링크 연동 예정.");
   });
 
