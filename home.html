@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>CORE PLAY - 홈</title>
+  <title>PLAY HUB - 홈</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     *{
@@ -44,7 +44,7 @@
       background:radial-gradient(circle at 0 0,#22c55e26,transparent 55%);
     }
 
-    /* ===== HOME 전체 그라뮬라 네온 ===== */
+    /* ===== HOME 전체 배경 ===== */
     body{
       font-family:'Segoe UI',system-ui,sans-serif;
       background:
@@ -151,7 +151,7 @@
       margin-bottom:6px;
     }
 
-    /* 상단: 디코 + 닉 + 지갑 */
+    /* 상단: 계정/지갑 */
     .top-account-grid{
       display:grid;
       grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);
@@ -279,7 +279,7 @@
       color:#d1d5db;
     }
 
-    /* 포인트 플랜 / 미니게임 */
+    /* 포인트 플랜 / 게임 */
     .plan-list{
       display:flex;
       flex-direction:column;
@@ -437,9 +437,9 @@
 <div class="app">
   <header class="header">
     <div class="logo-area">
-      <div class="logo-badge">C</div>
+      <div class="logo-badge">P</div>
       <div>
-        <div class="logo-text-main">CORE PLAY</div>
+        <div class="logo-text-main">PLAY HUB</div>
         <div class="logo-text-sub">실시간 룸 · 포인트 플랜</div>
       </div>
     </div>
@@ -452,7 +452,7 @@
   </header>
 
   <div class="main">
-    <!-- 1. 맨 위 입력/디코/지갑 -->
+    <!-- 1. 계정 / 닉네임 / 지갑 -->
     <div class="section-card">
       <div class="section-title">내 포인트 계정</div>
       <div class="section-sub">디스코드 연동 후, 해당 계정으로만 포인트 기능을 사용할 수 있습니다.</div>
@@ -490,31 +490,30 @@
       </div>
     </div>
 
-    <!-- 2. 중앙 실시간 -->
+    <!-- 2. 실시간 룸 영역 -->
     <div class="section-card">
       <div class="section-title">실시간 룸</div>
       <div class="section-sub">실제 방송 대신 데모 영상/클립을 넣을 수 있는 영역입니다.</div>
       <div class="live-main">
-        <!-- demo.mp4 대신 네 영상 경로 -->
         <video src="demo.mp4" autoplay muted loop playsinline></video>
         <div class="video-overlay-top">
           <div class="live-pill">LIVE</div>
           <div class="viewer-pill">동시 시청 1,284명</div>
         </div>
         <div class="video-overlay-bottom">
-          <div class="video-title">CORE LIVE ROOM · 포인트 연동 데모</div>
+          <div class="video-title">PLAY ROOM · 포인트 연동 데모</div>
           <div class="video-meta">채팅/리액션/포인트 미션이 실시간으로 붙는 화면을 가정한 레이아웃입니다.</div>
         </div>
       </div>
     </div>
 
-    <!-- 3. 아래 플랜 1개씩 세로 카드 -->
+    <!-- 3. 포인트 플랜 / 미니게임 / 에볼루션 -->
     <div class="section-card">
-      <div class="section-title">포인트 플랜 / 미니게임</div>
-      <div class="section-sub">플랜 카드들을 한 줄씩 세로로 나열한 영역입니다.</div>
+      <div class="section-title">포인트 플랜 / 게임</div>
+      <div class="section-sub">미니게임과 에볼루션 연동을 한 줄씩 카드로 구성한 영역입니다.</div>
 
       <div class="plan-list">
-        <!-- 카드 1 -->
+        <!-- 카드 1: 숫자 맞추기 -->
         <div class="plan-card">
           <div class="plan-header">
             <div class="plan-title-wrap">
@@ -531,7 +530,7 @@
           </div>
         </div>
 
-        <!-- 카드 2 -->
+        <!-- 카드 2: 하이로우 -->
         <div class="plan-card">
           <div class="plan-header">
             <div class="plan-title-wrap">
@@ -548,7 +547,24 @@
           </div>
         </div>
 
-        <!-- 카드 3 -->
+        <!-- 카드 3: 에볼루션 연동 -->
+        <div class="plan-card">
+          <div class="plan-header">
+            <div class="plan-title-wrap">
+              <div class="plan-title">에볼루션 포인트 룸</div>
+              <div class="plan-tag">에볼루션</div>
+            </div>
+            <button class="btn btn-outline" data-game="evo">데모 보기</button>
+          </div>
+          <div class="plan-desc">
+            에볼루션 테이블 결과에 맞춰 포인트를 적립/차감하는 연동 플로우를 가정한 데모 영역입니다.
+          </div>
+          <div class="plan-footer">
+            <span class="plan-meta">실제 연동은 관리자 페이지에서 설정합니다.</span>
+          </div>
+        </div>
+
+        <!-- 카드 4: 실시간 슬롯 -->
         <div class="plan-card">
           <div class="plan-header">
             <div class="plan-title-wrap">
@@ -565,7 +581,7 @@
           </div>
         </div>
 
-        <!-- 카드 4 -->
+        <!-- 카드 5: 리액션 보상 -->
         <div class="plan-card">
           <div class="plan-header">
             <div class="plan-title-wrap">
@@ -627,7 +643,7 @@
 </div>
 
 <script>
-  const STORAGE_KEY = "coreplay_user";
+  const STORAGE_KEY = "playhub_user";
   let state = { nickname: null, points: 0, lastBonusDate: null, discordUser:null };
 
   const userInfoEl   = document.getElementById("user-info");
@@ -813,11 +829,16 @@
     renderUser();
   }
 
+  function openEvolutionDemo(){
+    alert("여기서 에볼루션 테이블 결과 연동 흐름(예: BANKER / PLAYER / 결과 로그)을 시각적으로 보여줄 수 있습니다.");
+  }
+
   planButtons.forEach(btn=>{
     btn.addEventListener("click",()=>{
       const game = btn.dataset.game;
-      if(game==="guess") playGuess();
+      if(game==="guess")   playGuess();
       if(game==="highlow") playHighLow();
+      if(game==="evo")     openEvolutionDemo();
     });
   });
 
