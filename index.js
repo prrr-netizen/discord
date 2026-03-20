@@ -1,4 +1,4 @@
-require("dotenv").config?.();
+require("dotenv").config?.(); // .env 자동 로드
 
 const express = require("express");
 const path = require("path");
@@ -7,26 +7,30 @@ const axios = require("axios");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// 디스코드 OAuth 설정
 const CLIENT_ID = process.env.DISCORD_CLIENT_ID || "YOUR_CLIENT_ID";
 const CLIENT_SECRET = process.env.DISCORD_CLIENT_SECRET || "YOUR_CLIENT_SECRET";
 
 const BASE_URL = process.env.BASE_URL || "https://example.com";
 const FRONT_URL = process.env.FRONT_URL || "https://prrr-netizen.github.io/rlnl";
-
 const REDIRECT_URI = `${BASE_URL}/account/callback`;
 
+// 미들웨어
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
+// 1) 루트: 프론트로 넘기기
 app.get("/", (req, res) => {
   return res.redirect(FRONT_URL);
 });
 
+// 2) (옵션) 이 서버에서 띄우는 랜딩 페이지
 app.get("/link/main", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "link-main.html"));
 });
 
+// 3) 디스코드 OAuth 시작
 app.get("/auth/discord", (req, res) => {
   const state = Buffer.from(
     JSON.stringify({ ts: Date.now() })
@@ -44,6 +48,7 @@ app.get("/auth/discord", (req, res) => {
   return res.redirect(url);
 });
 
+// 4) 디스코드 콜백
 app.get("/account/callback", async (req, res) => {
   const code = req.query.code;
   const state = req.query.state;
@@ -88,6 +93,7 @@ app.get("/account/callback", async (req, res) => {
     const user = meRes.data;
     const username = encodeURIComponent(user.global_name || user.username);
 
+    // 프론트로 돌려보내기
     const redirectUrl = `${FRONT_URL}?auth=ok&username=${username}`;
     return res.redirect(redirectUrl);
   } catch (err) {
@@ -96,6 +102,7 @@ app.get("/account/callback", async (req, res) => {
   }
 });
 
+// 5) (옵션) 백엔드에서 직접 인증 완료 페이지 보여주고 싶을 때
 app.get("/account/complete", (req, res) => {
   const username = req.query.username || "알 수 없음";
 
@@ -166,6 +173,7 @@ app.get("/account/complete", (req, res) => {
   `);
 });
 
+// 서버 시작
 app.listen(PORT, () => {
   console.log(`rlnl GAME HUB OAuth server on port ${PORT}`);
 });
