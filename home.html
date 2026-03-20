@@ -4,6 +4,32 @@
   <meta charset="UTF-8">
   <title>PLAY HUB - 실시간 미니게임 룸</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- 접속 코드 잠금 -->
+  <script>
+    // 디코에서 승인된 사람한테만 알려줄 코드
+    const PASS = "테스터공유용코드";
+
+    try {
+      const saved = sessionStorage.getItem("playhub_pass_ok");
+      if (saved !== PASS) {
+        const input = prompt("접속 코드(승인 코드)를 입력하세요.");
+        if (input !== PASS) {
+          alert("승인되지 않은 접근입니다. 디스코드로 문의해 주세요.");
+          window.location.href = "index.html";
+        } else {
+          sessionStorage.setItem("playhub_pass_ok", PASS);
+        }
+      }
+    } catch(e) {
+      const input = prompt("접속 코드(승인 코드)를 입력하세요.");
+      if (input !== PASS) {
+        alert("승인되지 않은 접근입니다. 디스코드로 문의해 주세요.");
+        window.location.href = "index.html";
+      }
+    }
+  </script>
+
   <style>
     *{box-sizing:border-box;margin:0;padding:0;}
 
@@ -122,7 +148,6 @@
     }
     .wallet-right{display:flex;gap:6px;}
 
-    /* 실시간 룸: 카드 크게 2개 */
     .realtime-grid{
       display:grid;
       grid-template-columns:repeat(2,minmax(0,1fr));
@@ -164,7 +189,7 @@
     }
     .live-title{font-weight:600;font-size:13px;margin-bottom:2px;}
     .live-meta{font-size:11px;color:#d1d5db;}
-    
+
     .toast{
       position:fixed;left:50%;transform:translateX(-50%);bottom:18px;
       background:#020617;border-radius:999px;border:1px solid rgba(55,65,81,1);
@@ -217,7 +242,6 @@
   </header>
 
   <div class="main">
-    <!-- 계정 / 닉네임 / 지갑 -->
     <div class="section-card">
       <div class="section-title">내 포인트 계정</div>
       <div class="section-sub">디스코드 연동 후, 해당 계정으로만 포인트 기능을 이용할 수 있습니다.</div>
@@ -255,13 +279,11 @@
       </div>
     </div>
 
-    <!-- 실시간 룸: 큰 카드 2개 (외국 미니게임 iframe) -->
     <div class="section-card">
       <div class="section-title">실시간 미니게임 룸</div>
       <div class="section-sub">외부 HTML5 미니게임을 바로 플레이할 수 있는 영역입니다.</div>
 
       <div class="realtime-grid">
-        <!-- 카드 1 -->
         <div class="live-card">
           <iframe
             src="https://playpager.com/embed/chess/index.html"
@@ -278,7 +300,6 @@
           </div>
         </div>
 
-        <!-- 카드 2 -->
         <div class="live-card">
           <iframe
             src="https://playpager.com/embed/reversi/index.html"
@@ -296,14 +317,11 @@
         </div>
       </div>
     </div>
-
-    <!-- 아래 다른 카드/플레이 섹션 전부 제거됨 -->
   </div>
 </div>
 
 <div class="toast" id="toast"></div>
 
-<!-- 충전 모달 (원래 구조 유지) -->
 <div class="modal-backdrop" id="charge-modal-backdrop">
   <div class="modal-card">
     <div class="modal-header">
