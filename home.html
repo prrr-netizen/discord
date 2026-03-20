@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>PLAY HUB - 홈</title>
+  <title>PLAY HUB - 포인트 플레이 홈</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     *{
@@ -440,7 +440,7 @@
       <div class="logo-badge">P</div>
       <div>
         <div class="logo-text-main">PLAY HUB</div>
-        <div class="logo-text-sub">실시간 룸 · 포인트 플랜</div>
+        <div class="logo-text-sub">실시간 룸 · 에볼루션 · 포인트 플랜</div>
       </div>
     </div>
     <div class="header-right">
@@ -455,23 +455,23 @@
     <!-- 1. 계정 / 닉네임 / 지갑 -->
     <div class="section-card">
       <div class="section-title">내 포인트 계정</div>
-      <div class="section-sub">디스코드 연동 후, 해당 계정으로만 포인트 기능을 사용할 수 있습니다.</div>
+      <div class="section-sub">디스코드 연동 후, 해당 계정으로만 포인트 · 에볼루션 룸을 이용할 수 있습니다.</div>
 
       <div class="top-account-grid">
         <div>
           <div class="discord-box" id="discord-box">
             <div class="discord-status" id="discord-status">디스코드 미연동 상태</div>
-            <button class="btn btn-primary" id="discord-connect-btn">디스코드로 승인 / 연동</button>
+            <button class="btn btn-primary" id="discord-connect-btn">디스코드 계정 연동</button>
           </div>
 
           <div class="auth-box" id="auth-box">
             <div class="auth-row">
-              <input type="text" id="nickname-input" placeholder="닉네임 입력 (최대 16자)">
+              <input type="text" id="nickname-input" placeholder="표시용 닉네임 입력 (최대 16자)">
             </div>
             <div class="auth-row">
-              <button class="btn btn-outline" id="login-btn">닉네임 로그인 / 등록</button>
+              <button class="btn btn-outline" id="login-btn">닉네임 적용</button>
             </div>
-            <div class="auth-help">※ 디스코드 연동 후 사용할 표시용 닉네임입니다. (로컬 저장)</div>
+            <div class="auth-help">※ 방송/에볼루션 룸에서 보여질 닉네임입니다. (이 브라우저에만 저장)</div>
           </div>
         </div>
 
@@ -490,10 +490,10 @@
       </div>
     </div>
 
-    <!-- 2. 실시간 룸 영역 -->
+    <!-- 2. 실시간 룸 -->
     <div class="section-card">
       <div class="section-title">실시간 룸</div>
-      <div class="section-sub">실제 방송 대신 데모 영상/클립을 넣을 수 있는 영역입니다.</div>
+      <div class="section-sub">실제 방송 / 에볼루션 스트림과 함께 포인트 미션이 붙는 영역입니다.</div>
       <div class="live-main">
         <video src="demo.mp4" autoplay muted loop playsinline></video>
         <div class="video-overlay-top">
@@ -501,8 +501,10 @@
           <div class="viewer-pill">동시 시청 1,284명</div>
         </div>
         <div class="video-overlay-bottom">
-          <div class="video-title">PLAY ROOM · 포인트 연동 데모</div>
-          <div class="video-meta">채팅/리액션/포인트 미션이 실시간으로 붙는 화면을 가정한 레이아웃입니다.</div>
+          <div class="video-title">PLAY ROOM · 실시간 포인트 연동</div>
+          <div class="video-meta">
+            방송 구간에 맞춰 포인트 미션 · 에볼루션 룸 입장 버튼이 활성화됩니다.
+          </div>
         </div>
       </div>
     </div>
@@ -510,7 +512,7 @@
     <!-- 3. 포인트 플랜 / 미니게임 / 에볼루션 -->
     <div class="section-card">
       <div class="section-title">포인트 플랜 / 게임</div>
-      <div class="section-sub">미니게임과 에볼루션 연동을 한 줄씩 카드로 구성한 영역입니다.</div>
+      <div class="section-sub">미니게임과 에볼루션 연동을 한 줄씩 카드로 구성했습니다.</div>
 
       <div class="plan-list">
         <!-- 카드 1: 숫자 맞추기 -->
@@ -520,10 +522,10 @@
               <div class="plan-title">숫자 맞추기</div>
               <div class="plan-tag">미니게임</div>
             </div>
-            <button class="btn btn-primary" data-game="guess">플레이</button>
+            <button class="btn btn-primary" data-game="guess">바로 플레이</button>
           </div>
           <div class="plan-desc">
-            1~5 랜덤 숫자를 맞추면 2배 지급되는 기본 포인트 게임.
+            1~5 랜덤 숫자를 맞추면 2배 지급되는 기본 포인트 게임입니다.
           </div>
           <div class="plan-footer">
             <span class="plan-meta">참여비 50P · 성공 시 100P</span>
@@ -537,47 +539,48 @@
               <div class="plan-title">하이로우 카드</div>
               <div class="plan-tag">카드 게임</div>
             </div>
-            <button class="btn btn-primary" data-game="highlow">플레이</button>
+            <button class="btn btn-primary" data-game="highlow">바로 플레이</button>
           </div>
           <div class="plan-desc">
-            기준 숫자보다 높음/낮음만 고르는 심플 포인트 카드 게임.
+            기준 숫자보다 높음/낮음만 고르는 심플 포인트 카드 게임입니다.
           </div>
           <div class="plan-footer">
             <span class="plan-meta">참여비 100P · 성공 시 160P</span>
           </div>
         </div>
 
-        <!-- 카드 3: 에볼루션 연동 -->
+        <!-- 카드 3: 에볼루션 룸 -->
         <div class="plan-card">
           <div class="plan-header">
             <div class="plan-title-wrap">
               <div class="plan-title">에볼루션 포인트 룸</div>
               <div class="plan-tag">에볼루션</div>
             </div>
-            <button class="btn btn-outline" data-game="evo">데모 보기</button>
+            <button class="btn btn-primary" data-game="evo">에볼 룸 입장</button>
           </div>
           <div class="plan-desc">
-            에볼루션 테이블 결과에 맞춰 포인트를 적립/차감하는 연동 플로우를 가정한 데모 영역입니다.
+            에볼루션 테이블 결과에 맞춰 포인트를 적립/차감하는 실전 포인트 룸입니다.  
+            바카/블랙잭/룰렛 결과를 기반으로, 방송에서 안내하는 플랜대로 포인트가 정산됩니다.
           </div>
           <div class="plan-footer">
-            <span class="plan-meta">실제 연동은 관리자 페이지에서 설정합니다.</span>
+            <span class="plan-meta">참여비 100P 기준 · 플랜별 배수는 룸 내 안내</span>
           </div>
         </div>
 
-        <!-- 카드 4: 실시간 슬롯 -->
+        <!-- 카드 4: 실시간 미션 슬롯 -->
         <div class="plan-card">
           <div class="plan-header">
             <div class="plan-title-wrap">
               <div class="plan-title">실시간 미션 슬롯</div>
               <div class="plan-tag">실시간</div>
             </div>
-            <button class="btn btn-outline" disabled>준비중</button>
+            <button class="btn btn-outline" disabled>방송 중 활성화</button>
           </div>
           <div class="plan-desc">
-            실시간 룸에서 특정 구간에만 열리는 미션을 가정한 슬롯.
+            특정 방송 구간에서만 열리는 미션 슬롯입니다. 진행자는 방송에서 OPEN/마감 시점을 안내합니다.
           </div>
           <div class="plan-footer">
-            <span class="plan-meta">참여비 30P · 성공 시 60P</span>
+            <span class="plan-meta">구간별 참여비/배수는 방송 공지 참고</span>
           </div>
         </div>
 
@@ -588,13 +591,13 @@
               <div class="plan-title">랜덤 리액션 보상</div>
               <div class="plan-tag">연동</div>
             </div>
-            <button class="btn btn-outline" disabled>준비중</button>
+            <button class="btn btn-outline" disabled>채팅 연동</button>
           </div>
           <div class="plan-desc">
-            리액션/이모지 응답에 따라 포인트 드랍이 발생하는 연동 영역.
+            디스코드/방송 채팅 리액션에 따라 포인트 드랍이 발생하는 연동 플랜입니다.
           </div>
           <div class="plan-footer">
-            <span class="plan-meta">참여비 20P · 성공 시 80P</span>
+            <span class="plan-meta">참여 조건 및 보상은 각 이벤트별 공지</span>
           </div>
         </div>
 
@@ -614,8 +617,8 @@
     </div>
     <div class="modal-body">
       <p class="modal-desc">
-        포인트 충전은 디스코드 봇에서 승인된 요청만 처리됩니다.<br>
-        아래 정보를 확인 후 디스코드에서 충전 요청을 보내세요.
+        포인트 충전은 디스코드 봇 / 결제 페이지에서 승인된 요청만 처리됩니다.<br>
+        아래 정보를 확인한 뒤, 안내된 채널로 영수증 또는 결제 내역을 보내 주세요.
       </p>
       <div class="modal-info">
         <div class="modal-row">
@@ -632,11 +635,11 @@
         </div>
       </div>
       <p class="modal-note">
-        이 화면에서는 직접 포인트를 입력할 수 없으며, 승인된 충전만 포인트에 반영됩니다.
+        이 화면에서는 포인트 수정을 직접 할 수 없으며, 승인된 충전만 포인트에 반영됩니다.
       </p>
     </div>
     <div class="modal-footer">
-      <button class="btn btn-outline" id="charge-modal-discord-btn">디스코드 열기</button>
+      <button class="btn btn-outline" id="charge-modal-discord-btn">충전 안내 열기</button>
       <button class="btn btn-primary" id="charge-modal-ok">확인</button>
     </div>
   </div>
@@ -746,7 +749,7 @@
       showToast("로그인 후 이용해 주세요.");
       return;
     }
-    modalDiscordUser.textContent = state.discordUser || "연동되지 않음";
+    modalDiscordUser.textContent = state.discordUser || "디스코드 연동 후 표시";
     modalNickname.textContent = state.nickname || "-";
     modalPoints.textContent = `${state.points}P`;
     modalBackdrop.classList.add("show");
@@ -762,7 +765,7 @@
     if(e.target === modalBackdrop) closeChargeModal();
   });
   modalDiscordBtn.addEventListener("click",()=>{
-    alert("여기 디스코드 초대/봇 링크 연동 예정.");
+    alert("충전 안내 페이지 또는 디스코드 결제 채널 링크를 여기에 연결합니다.");
   });
 
   bonusBtn.addEventListener("click",()=>{
@@ -829,8 +832,13 @@
     renderUser();
   }
 
-  function openEvolutionDemo(){
-    alert("여기서 에볼루션 테이블 결과 연동 흐름(예: BANKER / PLAYER / 결과 로그)을 시각적으로 보여줄 수 있습니다.");
+  function openEvolutionRoom(){
+    if(!state.nickname){
+      showToast("로그인 후 이용해 주세요.");
+      return;
+    }
+    alert("에볼루션 룸 연동: 여기에서 실제 에볼루션 테이블 페이지 또는 내부 룸 URL로 이동시킵니다.");
+    // window.location.href = 'evolution-room.html?nick=' + encodeURIComponent(state.nickname);
   }
 
   planButtons.forEach(btn=>{
@@ -838,7 +846,7 @@
       const game = btn.dataset.game;
       if(game==="guess")   playGuess();
       if(game==="highlow") playHighLow();
-      if(game==="evo")     openEvolutionDemo();
+      if(game==="evo")     openEvolutionRoom();
     });
   });
 
