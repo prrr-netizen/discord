@@ -21,7 +21,7 @@
     }
     .app{
       width:100%;
-      max-width:1400px;
+      max-width:1100px;
       background:
         radial-gradient(circle at top, #020617 0, #020617 35%, #020617 40%, #020617 55%),
         radial-gradient(circle at 10% -10%, rgba(34,197,94,.25), transparent 55%),
@@ -61,8 +61,24 @@
     }
     .user-info{font-size:13px;text-align:right;}
     .user-info span{color:#22c55e;}
+    .btn{
+      border:none;border-radius:999px;
+      padding:7px 14px;font-size:13px;cursor:pointer;
+      font-weight:600;display:inline-flex;align-items:center;justify-content:center;
+      gap:6px;transition:transform .12s ease, box-shadow .12s ease, background .12s ease;
+    }
+    .btn-primary{
+      background:linear-gradient(135deg,#22c55e,#16a34a);
+      color:#020617;
+      box-shadow:0 0 16px rgba(34,197,94,.55);
+    }
+    .btn-primary:hover{transform:translateY(-1px);box-shadow:0 0 22px rgba(34,197,94,.75);}
+    .btn-outline{
+      background:transparent;color:#e5e7eb;
+      border:1px solid rgba(148,163,184,.7);
+    }
+    .btn-outline:hover{background:rgba(15,23,42,.95);}
 
-    /* 메인: 위 계정박스 + 아래 전체 게임/라이브 */
     .main{
       display:flex;
       flex-direction:column;
@@ -80,23 +96,23 @@
     .section-title{font-size:16px;font-weight:600;margin-bottom:8px;}
     .section-sub{font-size:12px;color:#9ca3af;margin-bottom:10px;}
 
-    .top-account{
+    /* 상단: 디코 + 닉네임 + 지갑 한 줄 */
+    .top-account-grid{
       display:grid;
-      grid-template-columns:minmax(0,1.3fr) minmax(0,1.7fr);
-      gap:14px;
+      grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);
+      gap:12px;
+      align-items:flex-start;
     }
-    @media(max-width:900px){
-      .top-account{grid-template-columns:1fr;}
+    @media(max-width:800px){
+      .top-account-grid{grid-template-columns:1fr;}
     }
-
     .discord-box{
       display:flex;justify-content:space-between;align-items:center;
-      margin-bottom:10px;padding:8px 10px;border-radius:11px;
+      margin-bottom:8px;padding:8px 10px;border-radius:11px;
       border:1px solid rgba(59,130,246,.9);
       background:radial-gradient(circle at 0 0,#1d4ed822,transparent 55%);
     }
     .discord-status{font-size:12px;color:#9ca3af;}
-
     .auth-box{display:flex;flex-direction:column;gap:6px;margin-top:4px;}
     .auth-row{display:flex;gap:6px;}
     .auth-row input{
@@ -108,7 +124,7 @@
 
     .wallet{
       display:flex;justify-content:space-between;align-items:center;
-      margin-top:10px;padding:10px 11px;border-radius:12px;
+      padding:10px 11px;border-radius:12px;
       background:radial-gradient(circle at 0 0,#22c55e24,transparent 55%),
                  radial-gradient(circle at 100% 0,#3b82f618,transparent 60%);
       border:1px solid rgba(55,65,81,.95);
@@ -117,16 +133,7 @@
     .wallet-balance{font-size:22px;font-weight:700;color:#22c55e;}
     .wallet-right{display:flex;gap:6px;}
 
-    /* 아래 전체 영역: 실시간 + 게임 카드 큰 그리드 */
-    .bottom-grid{
-      display:grid;
-      grid-template-columns: minmax(0,1.4fr) minmax(0,1.6fr);
-      gap:18px;
-    }
-    @media(max-width:1000px){
-      .bottom-grid{grid-template-columns:1fr;}
-    }
-
+    /* 중앙 실시간 박스 */
     .live-main{
       position:relative;
       border-radius:18px;
@@ -163,51 +170,45 @@
     .video-title{font-weight:600;font-size:14px;margin-bottom:2px;}
     .video-meta{font-size:12px;color:#d1d5db;}
 
-    .game-grid{
-      display:grid;
-      grid-template-columns:1fr;
+    /* 아래 플랜 카드: 1개 1개 1개 1개... */
+    .plan-list{
+      display:flex;
+      flex-direction:column;
       gap:12px;
     }
-    @media(max-width:1200px){
-      .game-grid{grid-template-columns:1fr;}
-    }
-    .game-card{
+    .plan-card{
       border-radius:16px;
       border:1px solid rgba(55,65,81,.95);
       background:radial-gradient(circle at 0 0,#0ea5e922,transparent 55%),rgba(15,23,42,.98);
-      padding:12px 14px;
-      font-size:14px;
+      padding:14px 14px;
       display:flex;
       flex-direction:column;
       gap:6px;
+      font-size:14px;
     }
-    .game-header{display:flex;justify-content:space-between;align-items:center;}
-    .game-name{font-weight:600;font-size:15px;}
-    .game-cost{font-size:12px;color:#9ca3af;}
-    .game-desc{font-size:13px;color:#9ca3af;}
-    .game-footer{display:flex;justify-content:space-between;align-items:center;margin-top:6px;}
-    .game-status{
-      font-size:11px;padding:3px 8px;border-radius:999px;
-      border:1px solid rgba(59,130,246,.7);color:#bfdbfe;
+    .plan-header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
     }
-
-    .btn{
-      border:none;border-radius:999px;
-      padding:7px 14px;font-size:13px;cursor:pointer;
-      font-weight:600;display:inline-flex;align-items:center;justify-content:center;
-      gap:6px;transition:transform .12s ease, box-shadow .12s ease, background .12s ease;
-    }
-    .btn-primary{
-      background:linear-gradient(135deg,#22c55e,#16a34a);
-      color:#020617;
-      box-shadow:0 0 16px rgba(34,197,94,.55);
-    }
-    .btn-primary:hover{transform:translateY(-1px);box-shadow:0 0 22px rgba(34,197,94,.75);}
-    .btn-outline{
-      background:transparent;color:#e5e7eb;
+    .plan-title{font-size:15px;font-weight:600;}
+    .plan-tag{
+      font-size:11px;
+      padding:3px 8px;
+      border-radius:999px;
       border:1px solid rgba(148,163,184,.7);
+      color:#e5e7eb;
     }
-    .btn-outline:hover{background:rgba(15,23,42,.95);}
+    .plan-desc{font-size:13px;color:#9ca3af;}
+    .plan-footer{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-top:6px;
+      font-size:12px;
+      color:#9ca3af;
+    }
+    .plan-meta{font-size:12px;color:#9ca3af;}
 
     .toast{
       position:fixed;left:50%;bottom:24px;
@@ -221,6 +222,82 @@
       display:none;
       z-index:90;
     }
+
+    /* 모달 */
+    .modal-backdrop{
+      position:fixed;
+      inset:0;
+      background:rgba(15,23,42,.88);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index:80;
+    }
+    .modal-backdrop.show{
+      display:flex;
+    }
+    .modal-card{
+      width:100%;
+      max-width:380px;
+      background:radial-gradient(circle at 0 0,#22c55e18,transparent 55%),#020617;
+      border-radius:16px;
+      border:1px solid rgba(148,163,184,.7);
+      box-shadow:0 20px 40px rgba(0,0,0,.95);
+      padding:12px 14px 12px;
+    }
+    .modal-header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:6px;
+    }
+    .modal-title{
+      font-size:14px;
+      font-weight:600;
+    }
+    .modal-close{
+      border:none;
+      background:transparent;
+      color:#9ca3af;
+      cursor:pointer;
+      font-size:13px;
+    }
+    .modal-body{
+      font-size:12px;
+      color:#d1d5db;
+    }
+    .modal-desc{
+      margin-bottom:8px;
+    }
+    .modal-info{
+      border-radius:10px;
+      border:1px solid rgba(55,65,81,.9);
+      background:#020617;
+      padding:6px 7px;
+      margin-bottom:6px;
+    }
+    .modal-row{
+      display:flex;
+      justify-content:space-between;
+      font-size:12px;
+      margin-bottom:2px;
+    }
+    .modal-label{
+      color:#9ca3af;
+    }
+    .modal-value{
+      color:#e5e7eb;
+    }
+    .modal-note{
+      font-size:11px;
+      color:#6b7280;
+    }
+    .modal-footer{
+      display:flex;
+      justify-content:flex-end;
+      gap:6px;
+      margin-top:8px;
+    }
   </style>
 </head>
 <body>
@@ -230,7 +307,7 @@
       <div class="logo-badge">C</div>
       <div>
         <div class="logo-text-main">CORE PLAY</div>
-        <div class="logo-text-sub">실시간 룸 · 포인트 게임 허브</div>
+        <div class="logo-text-sub">실시간 룸 · 포인트 플랜</div>
       </div>
     </div>
     <div class="header-right">
@@ -242,12 +319,12 @@
   </header>
 
   <div class="main">
-    <!-- 상단: 디코 + 닉네임 + 지갑 -->
+    <!-- 1. 맨 위 입력/디코/지갑 -->
     <div class="section-card">
       <div class="section-title">내 포인트 계정</div>
       <div class="section-sub">디스코드 연동 후, 해당 계정으로만 포인트 기능을 사용할 수 있습니다.</div>
 
-      <div class="top-account">
+      <div class="top-account-grid">
         <div>
           <div class="discord-box" id="discord-box">
             <div class="discord-status" id="discord-status">디스코드 미연동 상태</div>
@@ -280,87 +357,78 @@
       </div>
     </div>
 
-    <!-- 하단: 왼쪽 실시간, 오른쪽 게임 카드 전부 -->
-    <div class="bottom-grid">
-      <div class="section-card">
-        <div class="section-title">실시간 룸</div>
-        <div class="section-sub">실제 영상 대신 데모 클립/애니메이션을 넣어둘 수 있는 영역입니다.</div>
-        <div class="live-main">
-          <!-- demo.mp4 위치에 네 파일 경로 넣으면 됨 -->
-          <video src="demo.mp4" autoplay muted loop playsinline></video>
-          <div class="video-overlay-top">
-            <div class="live-pill">LIVE</div>
-            <div class="viewer-pill">동시 시청 1,284명</div>
-          </div>
-          <div class="video-overlay-bottom">
-            <div class="video-title">CORE LIVE ROOM · 포인트 연동 데모</div>
-            <div class="video-meta">채팅, 리액션, 포인트 미션이 실시간으로 연동되는 화면입니다.</div>
-          </div>
+    <!-- 2. 중앙 실시간 -->
+    <div class="section-card">
+      <div class="section-title">실시간 룸</div>
+      <div class="section-sub">실제 방송 대신 데모 영상/클립을 넣을 수 있는 영역입니다.</div>
+      <div class="live-main">
+        <!-- demo.mp4 대신 네 파일 경로 -->
+        <video src="demo.mp4" autoplay muted loop playsinline></video>
+        <div class="video-overlay-top">
+          <div class="live-pill">LIVE</div>
+          <div class="viewer-pill">동시 시청 1,284명</div>
+        </div>
+        <div class="video-overlay-bottom">
+          <div class="video-title">CORE LIVE ROOM · 포인트 연동 데모</div>
+          <div class="video-meta">채팅/리액션/포인트 미션이 실시간으로 붙는 화면을 가정한 레이아웃입니다.</div>
         </div>
       </div>
+    </div>
 
-      <div class="section-card">
-        <div class="section-title">포인트 게임 & 실시간 인터랙션</div>
-        <div class="section-sub">스포츠 매치 대신, 포인트 게임/미션 카드로 구성된 데모 영역입니다.</div>
+    <!-- 3. 아래 플랜 1개 1개 1개 1개... -->
+    <div class="section-card">
+      <div class="section-title">포인트 플랜 / 미니게임</div>
+      <div class="section-sub">플랜 카드들을 한 줄씩 세로로 나열한 영역입니다.</div>
 
-        <div class="game-grid">
-          <div class="game-card">
-            <div class="game-header">
-              <div>
-                <div class="game-name">숫자 맞추기</div>
-                <div class="game-cost">참여비: 50P · 성공 시 100P</div>
-              </div>
-            </div>
-            <div class="game-desc">1~5 사이 랜덤 숫자를 맞추면 2배 지급.</div>
-            <div class="game-footer">
-              <span class="game-status">캐주얼 · 운빨</span>
-              <button class="btn btn-primary game-play-btn" data-game="guess">플레이</button>
-            </div>
+      <div class="plan-list">
+        <div class="plan-card">
+          <div class="plan-header">
+            <div class="plan-title">숫자 맞추기</div>
+            <div class="plan-tag">미니게임</div>
           </div>
-
-          <div class="game-card">
-            <div class="game-header">
-              <div>
-                <div class="game-name">하이로우 카드</div>
-                <div class="game-cost">참여비: 100P · 성공 시 160P</div>
-              </div>
-            </div>
-            <div class="game-desc">기준 숫자보다 높음/낮음만 고르는 심플 카드 게임.</div>
-            <div class="game-footer">
-              <span class="game-status">카드 · 심플</span>
-              <button class="btn btn-primary game-play-btn" data-game="highlow">플레이</button>
-            </div>
+          <div class="plan-desc">1~5 랜덤 숫자를 맞추면 2배 지급되는 기본 포인트 게임.</div>
+          <div class="plan-footer">
+            <span class="plan-meta">참여비 50P · 성공 시 100P</span>
+            <button class="btn btn-primary" data-game="guess">플레이</button>
           </div>
-
-          <div class="game-card">
-            <div class="game-header">
-              <div>
-                <div class="game-name">실시간 미션 슬롯</div>
-                <div class="game-cost">참여비: 30P · 성공 시 60P</div>
-              </div>
-            </div>
-            <div class="game-desc">실시간 룸에서 특정 순간에만 열리는 미션을 가정한 데모 카드.</div>
-            <div class="game-footer">
-              <span class="game-status">실시간 · 미션</span>
-              <button class="btn btn-outline">준비중</button>
-            </div>
-          </div>
-
-          <div class="game-card">
-            <div class="game-header">
-              <div>
-                <div class="game-name">랜덤 리액션 보상</div>
-                <div class="game-cost">참여비: 20P · 성공 시 80P</div>
-              </div>
-            </div>
-            <div class="game-desc">리액션/이모지 응답에 따라 포인트 드랍이 발생하는 연동 영역.</div>
-            <div class="game-footer">
-              <span class="game-status">연동 · 리액션</span>
-              <button class="btn btn-outline">준비중</button>
-            </div>
-          </div>
-
         </div>
+
+        <div class="plan-card">
+          <div class="plan-header">
+            <div class="plan-title">하이로우 카드</div>
+            <div class="plan-tag">카드 게임</div>
+          </div>
+          <div class="plan-desc">기준 숫자보다 높음/낮음만 고르는 심플 포인트 카드 게임.</div>
+          <div class="plan-footer">
+            <span class="plan-meta">참여비 100P · 성공 시 160P</span>
+            <button class="btn btn-primary" data-game="highlow">플레이</button>
+          </div>
+        </div>
+
+        <div class="plan-card">
+          <div class="plan-header">
+            <div class="plan-title">실시간 미션 슬롯</div>
+            <div class="plan-tag">실시간</div>
+          </div>
+          <div class="plan-desc">실시간 룸에서 특정 구간에만 열리는 미션을 가정한 슬롯.</div>
+          <div class="plan-footer">
+            <span class="plan-meta">참여비 30P · 성공 시 60P</span>
+            <button class="btn btn-outline">준비중</button>
+          </div>
+        </div>
+
+        <div class="plan-card">
+          <div class="plan-header">
+            <div class="plan-title">랜덤 리액션 보상</div>
+            <div class="plan-tag">연동</div>
+          </div>
+          <div class="plan-desc">리액션/이모지 응답에 따라 포인트 드랍이 발생하는 연동 영역.</div>
+          <div class="plan-footer">
+            <span class="plan-meta">참여비 20P · 성공 시 80P</span>
+            <button class="btn btn-outline">준비중</button>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
@@ -368,9 +436,46 @@
 
 <div class="toast" id="toast"></div>
 
+<!-- 모달 통짜 -->
+<div class="modal-backdrop" id="charge-modal-backdrop">
+  <div class="modal-card">
+    <div class="modal-header">
+      <div class="modal-title">포인트 충전 안내</div>
+      <button class="modal-close" id="charge-modal-close">✕</button>
+    </div>
+    <div class="modal-body">
+      <p class="modal-desc">
+        포인트 충전은 디스코드 봇에서 승인된 요청만 처리됩니다.<br>
+        아래 정보를 확인 후 디스코드에서 충전 요청을 보내세요.
+      </p>
+      <div class="modal-info">
+        <div class="modal-row">
+          <span class="modal-label">디스코드 계정</span>
+          <span class="modal-value" id="modal-discord-user">연동되지 않음</span>
+        </div>
+        <div class="modal-row">
+          <span class="modal-label">표시 닉네임</span>
+          <span class="modal-value" id="modal-nickname">-</span>
+        </div>
+        <div class="modal-row">
+          <span class="modal-label">현재 보유 포인트</span>
+          <span class="modal-value" id="modal-points">0P</span>
+        </div>
+      </div>
+      <p class="modal-note">
+        이 화면에서는 직접 포인트를 입력할 수 없으며, 승인된 충전만 포인트에 반영됩니다.
+      </p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" id="charge-modal-discord-btn">디스코드 열기</button>
+      <button class="btn btn-primary" id="charge-modal-ok">확인</button>
+    </div>
+  </div>
+</div>
+
 <script>
   const STORAGE_KEY = "coreplay_user";
-  let state = { nickname: null, points: 0, lastBonusDate: null };
+  let state = { nickname: null, points: 0, lastBonusDate: null, discordUser:null };
 
   const userInfoEl   = document.getElementById("user-info");
   const logoutBtn    = document.getElementById("logout-btn");
@@ -382,7 +487,15 @@
   const chargeBtn    = document.getElementById("charge-btn");
   const bonusBtn     = document.getElementById("bonus-btn");
   const toastEl      = document.getElementById("toast");
-  const gamePlayBtns = document.querySelectorAll(".game-play-btn");
+  const planButtons  = document.querySelectorAll("[data-game]");
+
+  const modalBackdrop = document.getElementById("charge-modal-backdrop");
+  const modalCloseBtn = document.getElementById("charge-modal-close");
+  const modalOkBtn    = document.getElementById("charge-modal-ok");
+  const modalDiscordBtn = document.getElementById("charge-modal-discord-btn");
+  const modalDiscordUser = document.getElementById("modal-discord-user");
+  const modalNickname = document.getElementById("modal-nickname");
+  const modalPoints   = document.getElementById("modal-points");
 
   const cooldowns = { bonus:5000, guess:3000, highlow:3000 };
   const lastUsed  = { bonus:0,    guess:0,    highlow:0 };
@@ -395,6 +508,7 @@
         if(parsed.nickname) state.nickname = parsed.nickname;
         if(typeof parsed.points === "number") state.points = parsed.points;
         if(parsed.lastBonusDate) state.lastBonusDate = parsed.lastBonusDate;
+        if(parsed.discordUser) state.discordUser = parsed.discordUser;
       }
     }catch(e){}
   }
@@ -457,21 +571,31 @@
     showToast("로그아웃되었습니다.");
   });
 
+  // 충전 버튼 -> 모달
   chargeBtn.addEventListener("click",()=>{
-    if(!state.nickname){ showToast("로그인 후 이용해 주세요."); return; }
-    const input = prompt("충전할 포인트를 입력해 주세요. (1 ~ 50000)");
-    if(!input) return;
-    const amount = Number(input);
-    if(!Number.isFinite(amount) || amount<=0){
-      showToast("올바른 숫자를 입력해 주세요."); return;
+    if(!state.nickname){
+      showToast("로그인 후 이용해 주세요.");
+      return;
     }
-    if(amount > 50000){
-      showToast("한 번에 최대 50,000P까지만 충전할 수 있습니다."); return;
-    }
-    state.points += amount;
-    saveState();
-    renderUser();
-    showToast(`${amount}P가 충전되었습니다.`);
+    // 모달 내용 채우기
+    modalDiscordUser.textContent = state.discordUser || "연동되지 않음";
+    modalNickname.textContent = state.nickname || "-";
+    modalPoints.textContent = `${state.points}P`;
+    modalBackdrop.classList.add("show");
+  });
+
+  function closeChargeModal(){
+    modalBackdrop.classList.remove("show");
+  }
+
+  modalCloseBtn.addEventListener("click", closeChargeModal);
+  modalOkBtn.addEventListener("click", closeChargeModal);
+  modalBackdrop.addEventListener("click",(e)=>{
+    if(e.target === modalBackdrop) closeChargeModal();
+  });
+  modalDiscordBtn.addEventListener("click",()=>{
+    // 그냥 디스코드 초대/봇 링크 여는 자리 (임시 alert)
+    alert("여기 디스코드 초대/봇 링크 연동 예정.");
   });
 
   bonusBtn.addEventListener("click",()=>{
@@ -538,7 +662,7 @@
     renderUser();
   }
 
-  gamePlayBtns.forEach(btn=>{
+  planButtons.forEach(btn=>{
     btn.addEventListener("click",()=>{
       const game = btn.dataset.game;
       if(game==="guess") playGuess();
