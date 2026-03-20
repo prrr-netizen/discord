@@ -4,7 +4,467 @@
   <meta charset="UTF-8">
   <title>CORE PLAY - 홈</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ======= HOME 공통 ======= */
+
+    body{
+      font-family:'Segoe UI',system-ui,sans-serif;
+      background:
+        radial-gradient(circle at 0% 0%, #22c55e18, transparent 55%),
+        radial-gradient(circle at 100% 0%, #3b82f618, transparent 55%),
+        #020617;
+      color:#e5e7eb;
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:flex-start;
+      padding:26px 12px;
+      font-size:15px;
+    }
+
+    .app{
+      width:100%;
+      max-width:1400px;
+      background:
+        radial-gradient(circle at top, #020617 0, #020617 35%, #020617 40%, #020617 55%),
+        radial-gradient(circle at 10% -10%, rgba(34,197,94,.25), transparent 55%),
+        radial-gradient(circle at 90% -10%, rgba(59,130,246,.25), transparent 55%),
+        #020617;
+      border-radius:20px;
+      border:1px solid rgba(148,163,184,.45);
+      box-shadow:
+        0 0 70px rgba(37,99,235,.55),
+        0 26px 46px rgba(0,0,0,.95);
+      overflow:hidden;
+      position:relative;
+    }
+
+    /* 헤더 */
+
+    .header{
+      padding:18px 22px;
+      border-bottom:1px solid rgba(55,65,81,.7);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      background:linear-gradient(135deg,#020617,#020617 50%,#0b1120);
+    }
+    .logo-area{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    .logo-badge{
+      width:34px;
+      height:34px;
+      border-radius:11px;
+      background:radial-gradient(circle at 30% 0,#22c55e,#0f172a);
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      font-weight:800;
+      font-size:18px;
+      box-shadow:0 0 18px rgba(34,197,94,.7);
+    }
+    .logo-text-main{font-weight:800;font-size:19px;letter-spacing:.03em}
+    .logo-text-sub{font-size:11px;color:#9ca3af}
+    .header-right{
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+    .badge-online{
+      font-size:11px;
+      padding:4px 10px;
+      border-radius:999px;
+      border:1px solid rgba(52,211,153,.6);
+      background:rgba(22,163,74,.2);
+      color:#bbf7d0;
+      text-shadow:0 0 4px rgba(34,197,94,.7);
+    }
+    .user-info{
+      font-size:13px;
+      text-align:right;
+    }
+    .user-info span{color:#22c55e}
+
+    /* 레이아웃 */
+
+    .main{
+      display:grid;
+      grid-template-columns: minmax(0,1.05fr) minmax(0,1.45fr);
+      gap:18px;
+      padding:18px 20px 20px;
+    }
+    @media(max-width:900px){
+      .main{
+        grid-template-columns:1fr;
+        padding:16px 12px 18px;
+      }
+    }
+
+    .left{}
+    .right{}
+
+    /* 카드 공통 */
+
+    .section-card{
+      background:linear-gradient(145deg,rgba(15,23,42,.96),rgba(15,23,42,.98));
+      border-radius:14px;
+      border:1px solid rgba(55,65,81,.95);
+      padding:14px 14px 12px;
+      box-shadow:
+        0 0 30px rgba(15,23,42,.8),
+        0 0 18px rgba(15,23,42,.7);
+    }
+    .section-title{
+      font-size:15px;
+      font-weight:600;
+      margin-bottom:6px;
+    }
+    .section-sub{
+      font-size:12px;
+      color:#9ca3af;
+      margin-bottom:8px;
+    }
+
+    /* 디스코드 / 계정 */
+
+    .discord-box{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:8px;
+      padding:7px 9px;
+      border-radius:11px;
+      border:1px solid rgba(59,130,246,.9);
+      background:radial-gradient(circle at 0 0,#1d4ed822,transparent 55%);
+    }
+    .discord-status{
+      font-size:12px;
+      color:#9ca3af;
+    }
+    .discord-status--ok{
+      color:#bfdbfe;
+    }
+
+    /* 로그인 박스 */
+
+    .auth-box{
+      display:flex;
+      flex-direction:column;
+      gap:5px;
+      margin-top:4px;
+    }
+    .auth-row{
+      display:flex;
+      gap:6px;
+    }
+    .auth-row input{
+      flex:1;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid rgba(75,85,99,.9);
+      background:#020617;
+      color:#e5e7eb;
+      font-size:13px;
+    }
+    .auth-help{
+      font-size:11px;
+      color:#6b7280;
+    }
+
+    /* 지갑 */
+
+    .wallet{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-top:8px;
+      padding:9px 10px;
+      border-radius:12px;
+      background:
+        radial-gradient(circle at 0 0,#22c55e24,transparent 55%),
+        radial-gradient(circle at 100% 0,#3b82f618,transparent 60%);
+      border:1px solid rgba(55,65,81,.95);
+      box-shadow:0 0 18px rgba(34,197,94,.5);
+    }
+    .wallet-left{ font-size:12px; }
+    .wallet-balance{
+      font-size:20px;
+      font-weight:700;
+      color:#22c55e;
+    }
+    .wallet-right{
+      display:flex;
+      gap:6px;
+    }
+
+    /* 미니게임 */
+
+    .game-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:8px;
+      margin-top:8px;
+    }
+    @media(max-width:600px){
+      .game-grid{grid-template-columns:1fr;}
+    }
+    .game-card{
+      border-radius:12px;
+      border:1px solid rgba(55,65,81,.95);
+      background:
+        radial-gradient(circle at 0 0,#0ea5e922,transparent 55%),
+        rgba(15,23,42,.98);
+      padding:8px 9px;
+      font-size:13px;
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+    }
+    .game-header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+    .game-name{font-weight:600;font-size:14px;}
+    .game-cost{
+      font-size:12px;
+      color:#9ca3af;
+    }
+    .game-desc{
+      font-size:12px;
+      color:#9ca3af;
+    }
+    .game-footer{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-top:4px;
+    }
+    .game-status{
+      font-size:11px;
+      padding:2px 7px;
+      border-radius:999px;
+      border:1px solid rgba(59,130,246,.7);
+      color:#bfdbfe;
+    }
+
+    /* 이벤트 리스트 */
+
+    .filter-tabs{
+      display:flex;
+      flex-wrap:wrap;
+      gap:6px;
+      margin-bottom:8px;
+    }
+    .filter-btn{
+      font-size:11px;
+      padding:4px 9px;
+      border-radius:999px;
+      border:1px solid rgba(75,85,99,.9);
+      background:#020617;
+      color:#9ca3af;
+      cursor:pointer;
+    }
+    .filter-btn.active{
+      background:linear-gradient(135deg,#3b82f6,#22c55e);
+      border-color:transparent;
+      color:#f9fafb;
+      box-shadow:0 0 14px rgba(59,130,246,.7);
+    }
+    .match-list{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+    }
+    .match-card{
+      border-radius:11px;
+      border:1px solid rgba(55,65,81,.95);
+      background:radial-gradient(circle at 100% 0,#3b82f622,transparent 55%),rgba(15,23,42,.98);
+      padding:8px 9px;
+      font-size:13px;
+      display:grid;
+      grid-template-columns: minmax(0,1.6fr) minmax(0,1.3fr);
+      gap:8px;
+    }
+    @media(max-width:700px){
+      .match-card{
+        grid-template-columns:1fr;
+      }
+    }
+    .match-main{
+      display:flex;
+      flex-direction:column;
+      gap:3px;
+    }
+    .match-league{
+      color:#9ca3af;
+      font-size:12px;
+    }
+    .match-teams{
+      font-size:14px;
+      font-weight:600;
+    }
+    .match-time{
+      color:#6b7280;
+      font-size:12px;
+    }
+    .match-meta{
+      color:#9ca3af;
+      font-size:12px;
+    }
+    .match-actions{
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+    }
+    .tag-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:4px;
+    }
+    .tag{
+      padding:1px 6px;
+      border-radius:999px;
+      border:1px solid rgba(55,65,81,.9);
+      font-size:11px;
+      color:#9ca3af;
+    }
+    .btn-play{
+      padding:5px 10px;
+      border-radius:999px;
+      border:none;
+      cursor:pointer;
+      font-size:12px;
+      font-weight:600;
+      background:linear-gradient(135deg,#22c55e,#16a34a);
+      color:#020617;
+    }
+
+    /* 모달 */
+
+    .modal-backdrop{
+      position:fixed;
+      inset:0;
+      background:rgba(15,23,42,.88);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:80;
+    }
+    .modal-card{
+      width:100%;
+      max-width:380px;
+      background:radial-gradient(circle at 0 0,#22c55e18,transparent 55%),#020617;
+      border-radius:16px;
+      border:1px solid rgba(148,163,184,.7);
+      box-shadow:0 20px 40px rgba(0,0,0,.95);
+      padding:12px 14px 12px;
+    }
+    .modal-header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:6px;
+    }
+    .modal-title{
+      font-size:14px;
+      font-weight:600;
+    }
+    .modal-close{
+      border:none;
+      background:transparent;
+      color:#9ca3af;
+      cursor:pointer;
+      font-size:13px;
+    }
+    .modal-body{
+      font-size:12px;
+      color:#d1d5db;
+    }
+    .modal-desc{
+      margin-bottom:8px;
+    }
+    .modal-info{
+      border-radius:10px;
+      border:1px solid rgba(55,65,81,.9);
+      background:#020617;
+      padding:6px 7px;
+      margin-bottom:6px;
+    }
+    .modal-row{
+      display:flex;
+      justify-content:space-between;
+      font-size:12px;
+      margin-bottom:2px;
+    }
+    .modal-label{
+      color:#9ca3af;
+    }
+    .modal-value{
+      color:#e5e7eb;
+    }
+    .modal-note{
+      font-size:11px;
+      color:#6b7280;
+    }
+    .modal-footer{
+      display:flex;
+      justify-content:flex-end;
+      gap:6px;
+      margin-top:8px;
+    }
+
+    /* 공통 버튼 */
+
+    .btn{
+      border:none;
+      border-radius:999px;
+      padding:7px 14px;
+      font-size:13px;
+      cursor:pointer;
+      font-weight:600;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:6px;
+      transition:transform .12s ease, box-shadow .12s ease, background .12s ease;
+    }
+    .btn-primary{
+      background:linear-gradient(135deg,#22c55e,#16a34a);
+      color:#020617;
+      box-shadow:0 0 16px rgba(34,197,94,.55);
+    }
+    .btn-primary:hover{
+      transform:translateY(-1px);
+      box-shadow:0 0 22px rgba(34,197,94,.75);
+    }
+    .btn-outline{
+      background:transparent;
+      color:#e5e7eb;
+      border:1px solid rgba(148,163,184,.7);
+    }
+    .btn-outline:hover{
+      background:rgba(15,23,42,.95);
+    }
+
+    .toast{
+      position:fixed;
+      left:50%;
+      bottom:24px;
+      transform:translateX(-50%);
+      background:rgba(15,23,42,.95);
+      color:#e5e7eb;
+      padding:8px 14px;
+      border-radius:999px;
+      font-size:12px;
+      border:1px solid rgba(75,85,99,.9);
+      display:none;
+      z-index:90;
+    }
+  </style>
 </head>
 <body>
 <div class="app">
@@ -27,7 +487,7 @@
   </header>
 
   <div class="main">
-    <!-- 좌측: 계정/포인트/미니게임 -->
+    <!-- 좌측 -->
     <div class="left">
       <div class="section-card">
         <div class="section-title">내 포인트 계정</div>
@@ -35,7 +495,6 @@
           디스코드 계정을 한 번 연동하면, 해당 계정으로만 포인트 기능을 사용할 수 있습니다.
         </div>
 
-        <!-- 디스코드 상태 박스 -->
         <div class="discord-box" id="discord-box">
           <div class="discord-status" id="discord-status">디스코드 미연동 상태</div>
           <button class="btn btn-primary" id="discord-connect-btn">
@@ -43,7 +502,6 @@
           </button>
         </div>
 
-        <!-- 닉네임 로그인 -->
         <div class="auth-box" id="auth-box">
           <div class="auth-row">
             <input type="text" id="nickname-input" placeholder="닉네임 입력 (최대 16자)">
@@ -56,7 +514,6 @@
           </div>
         </div>
 
-        <!-- 포인트 지갑 -->
         <div class="wallet" id="wallet-box" style="display:none;">
           <div class="wallet-left">
             <div style="font-size:12px;color:#9ca3af;">현재 보유 포인트</div>
@@ -107,7 +564,7 @@
       </div>
     </div>
 
-    <!-- 우측: 이벤트 / 매치 리스트 -->
+    <!-- 우측 -->
     <div class="right">
       <div class="section-card">
         <div class="section-title">이벤트 & 매치 리스트</div>
@@ -122,9 +579,7 @@
           <button class="filter-btn" data-filter="mini">미니게임</button>
         </div>
 
-        <div class="match-list" id="match-list">
-          <!-- script.js에서 동적으로 채움 -->
-        </div>
+        <div class="match-list" id="match-list"></div>
       </div>
     </div>
   </div>
@@ -132,7 +587,6 @@
 
 <div class="toast" id="toast"></div>
 
-<!-- 포인트 충전 모달 -->
 <div class="modal-backdrop" id="charge-modal-backdrop" style="display:none;">
   <div class="modal-card">
     <div class="modal-header">
@@ -169,6 +623,304 @@
   </div>
 </div>
 
-<script src="script.js"></script>
+<script>
+  const STORAGE_KEY = "coreplay_user";
+  let state = { nickname: null, points: 0, lastBonusDate: null };
+
+  const matches = [
+    { id:1, type:"football", league:"CORE 리그 · 축구", title:"RED FC vs BLUE FC", time:"오늘 21:00", desc:"득점 예측 미니 이벤트 (포인트 참여)", tag:["축구","라이브예정"], cost:100 },
+    { id:2, type:"esports", league:"e-ARENA · FPS", title:"RIVALS CUP S2", time:"오늘 22:30", desc:"킬 수 맞추기 포인트 챌린지", tag:["FPS","e스포츠"], cost:150 },
+    { id:3, type:"football", league:"CORE 리그 · 축구", title:"CITY SC vs UNITED SC", time:"내일 19:00", desc:"승부 예측 참여형 이벤트", tag:["축구","이벤트"], cost:80 },
+    { id:4, type:"mini", league:"MINI GAME", title:"룰렛 스핀 이벤트", time:"상시 참여 가능", desc:"룰렛 돌려 랜덤 보상 받기", tag:["룰렛","랜덤"], cost:50 },
+    { id:5, type:"esports", league:"e-ARENA · MOBA", title:"CORE 챔피언십", time:"이번 주말", desc:"승리팀 예측 참여형 포인트 이벤트", tag:["MOBA","e스포츠"], cost:120 },
+  ];
+
+  const userInfoEl   = document.getElementById("user-info");
+  const logoutBtn    = document.getElementById("logout-btn");
+  const authBox      = document.getElementById("auth-box");
+  const walletBox    = document.getElementById("wallet-box");
+  const balanceText  = document.getElementById("balance-text");
+  const loginBtn     = document.getElementById("login-btn");
+  const nicknameInput= document.getElementById("nickname-input");
+  const chargeBtn    = document.getElementById("charge-btn");
+  const bonusBtn     = document.getElementById("bonus-btn");
+  const matchListEl  = document.getElementById("match-list");
+  const filterBtns   = document.querySelectorAll(".filter-btn");
+  const toastEl      = document.getElementById("toast");
+  const gamePlayBtns = document.querySelectorAll(".game-play-btn");
+
+  function loadState(){
+    try{
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if(raw){
+        const parsed = JSON.parse(raw);
+        if(parsed.nickname) state.nickname = parsed.nickname;
+        if(typeof parsed.points === "number") state.points = parsed.points;
+        if(parsed.lastBonusDate) state.lastBonusDate = parsed.lastBonusDate;
+      }
+    }catch(e){}
+  }
+
+  function saveState(){
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  }
+
+  function renderUser(){
+    if(state.nickname){
+      userInfoEl.innerHTML = `안녕하세요, <span>${state.nickname}</span> 님`;
+      authBox.style.display = "flex";
+      authBox.style.visibility = "hidden";
+      authBox.style.height = "0";
+      walletBox.style.display = "flex";
+      logoutBtn.style.display = "inline-flex";
+    }else{
+      userInfoEl.textContent = "비로그인 상태입니다";
+      authBox.style.display = "flex";
+      authBox.style.visibility = "visible";
+      authBox.style.height = "auto";
+      walletBox.style.display = "none";
+      logoutBtn.style.display = "none";
+    }
+    balanceText.textContent = `${state.points}P`;
+  }
+
+  function showToast(msg){
+    toastEl.textContent = msg;
+    toastEl.style.display = "block";
+    setTimeout(()=>{toastEl.style.display = "none";}, 1800);
+  }
+
+  const cooldowns = {
+    bonus:   1000 * 5,
+    guess:   1000 * 3,
+    highlow: 1000 * 3,
+    event:   1000 * 2
+  };
+  const lastUsed = {
+    bonus:   0,
+    guess:   0,
+    highlow: 0,
+    event:   0
+  };
+
+  function checkCooldown(key){
+    const now = Date.now();
+    const gap = now - (lastUsed[key] || 0);
+    if(gap < cooldowns[key]){
+      const left = Math.ceil((cooldowns[key] - gap)/1000);
+      showToast(`잠시 후 다시 시도해 주세요. (${left}초)`);
+      return false;
+    }
+    lastUsed[key] = now;
+    return true;
+  }
+
+  function renderMatches(filter="all"){
+    matchListEl.innerHTML = "";
+    matches
+      .filter(m => filter==="all" ? true : m.type===filter)
+      .forEach(m => {
+        const div = document.createElement("div");
+        div.className = "match-card";
+        div.innerHTML = `
+          <div class="match-main">
+            <div class="match-league">${m.league}</div>
+            <div class="match-teams">${m.title}</div>
+            <div class="match-time">${m.time}</div>
+            <div class="match-meta">${m.desc}</div>
+          </div>
+          <div class="match-actions">
+            <div class="tag-row">
+              ${m.tag.map(t=>`<span class="tag">${t}</span>`).join("")}
+              <span class="tag">${m.cost}P 필요</span>
+            </div>
+            <button class="btn-play" data-id="${m.id}">포인트로 참여</button>
+          </div>
+        `;
+        matchListEl.appendChild(div);
+      });
+
+    document.querySelectorAll(".btn-play").forEach(btn=>{
+      btn.addEventListener("click",()=>{
+        const id = Number(btn.dataset.id);
+        handleEventJoin(id);
+      });
+    });
+  }
+
+  function handleEventJoin(id){
+    if(!state.nickname){
+      showToast("로그인 후 참여할 수 있습니다.");
+      return;
+    }
+    if(!checkCooldown("event")) return;
+
+    const match = matches.find(m=>m.id===id);
+    if(!match) return;
+    if(state.points < match.cost){
+      showToast(`포인트가 부족합니다. (${match.cost}P 필요)`);
+      return;
+    }
+    state.points -= match.cost;
+    saveState();
+    renderUser();
+    showToast(`${match.title} 이벤트에 참여했습니다. (-${match.cost}P)`);
+  }
+
+  loginBtn.addEventListener("click",()=>{
+    const nick = nicknameInput.value.trim();
+    if(!nick){
+      showToast("닉네임을 입력해 주세요.");
+      return;
+    }
+    if(nick.length > 16){
+      showToast("닉네임은 16자 이내로 입력해 주세요.");
+      return;
+    }
+    state.nickname = nick;
+    if(state.points === 0){
+      state.points = 500;
+      showToast("첫 로그인 보너스 500P가 지급되었습니다.");
+    }
+    saveState();
+    renderUser();
+  });
+
+  logoutBtn.addEventListener("click",()=>{
+    state.nickname = null;
+    saveState();
+    renderUser();
+    showToast("로그아웃되었습니다.");
+  });
+
+  chargeBtn.addEventListener("click",()=>{
+    if(!state.nickname){
+      showToast("로그인 후 이용해 주세요.");
+      return;
+    }
+    const input = prompt("충전할 포인트를 입력해 주세요. (1 ~ 50000)");
+    if(!input) return;
+    const amount = Number(input);
+    if(!Number.isFinite(amount) || amount<=0){
+      showToast("올바른 숫자를 입력해 주세요.");
+      return;
+    }
+    if(amount > 50000){
+      showToast("한 번에 최대 50,000P까지만 충전할 수 있습니다.");
+      return;
+    }
+    state.points += amount;
+    saveState();
+    renderUser();
+    showToast(`${amount}P가 충전되었습니다.`);
+  });
+
+  bonusBtn.addEventListener("click",()=>{
+    if(!state.nickname){
+      showToast("로그인 후 이용해 주세요.");
+      return;
+    }
+    if(!checkCooldown("bonus")) return;
+
+    const today = new Date().toISOString().slice(0,10);
+    if(state.lastBonusDate === today){
+      showToast("오늘은 이미 출석 보너스를 받았습니다.");
+      return;
+    }
+    state.lastBonusDate = today;
+    state.points += 200;
+    saveState();
+    renderUser();
+    showToast("출석 보너스 200P가 지급되었습니다.");
+  });
+
+  function playGuess(){
+    if(!state.nickname){
+      showToast("로그인 후 이용해 주세요.");
+      return;
+    }
+    if(!checkCooldown("guess")) return;
+
+    const cost = 50;
+    if(state.points < cost){
+      showToast("포인트가 부족합니다. (50P 필요)");
+      return;
+    }
+    const answer = Math.floor(Math.random()*5)+1;
+    const input = prompt("1~5 사이 숫자를 하나 입력하세요.");
+    if(!input) return;
+    const guess = Number(input);
+    state.points -= cost;
+    if(guess === answer){
+      const reward = 100;
+      state.points += reward;
+      showToast(`정답! +${reward-cost}P (총 ${reward}P 획득)`);
+    }else{
+      showToast(`꽝! 정답은 ${answer}였습니다. (-${cost}P)`);
+    }
+    saveState();
+    renderUser();
+  }
+
+  function playHighLow(){
+    if(!state.nickname){
+      showToast("로그인 후 이용해 주세요.");
+      return;
+    }
+    if(!checkCooldown("highlow")) return;
+
+    const cost = 100;
+    if(state.points < cost){
+      showToast("포인트가 부족합니다. (100P 필요)");
+      return;
+    }
+    const base = Math.floor(Math.random()*10)+1;
+    const choice = prompt(`기준 숫자: ${base}\n'높음' 또는 '낮음'을 입력하세요.`);
+    if(!choice) return;
+    const c = choice.trim();
+    const next = Math.floor(Math.random()*10)+1;
+    state.points -= cost;
+    let win = false;
+    if(c === "높음" && next > base) win = true;
+    if(c === "낮음" && next < base) win = true;
+
+    if(win){
+      const reward = 160;
+      state.points += reward;
+      showToast(`성공! 새 숫자: ${next} ( +${reward-cost}P )`);
+    }else{
+      showToast(`실패! 새 숫자: ${next} (-${cost}P)`);
+    }
+    saveState();
+    renderUser();
+  }
+
+  gamePlayBtns.forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      const game = btn.dataset.game;
+      if(game==="guess") playGuess();
+      if(game==="highlow") playHighLow();
+    });
+  });
+
+  filterBtns.forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      filterBtns.forEach(b=>b.classList.remove("active"));
+      btn.classList.add("active");
+      const filter = btn.dataset.filter;
+      renderMatches(filter);
+    });
+  });
+
+  setInterval(()=>{
+    const now = new Date();
+    const t = now.toTimeString().slice(0,8);
+    document.getElementById("status-badge").textContent = `● ONLINE | ${t}`;
+  },1000);
+
+  loadState();
+  renderUser();
+  renderMatches("all");
+</script>
 </body>
 </html>
