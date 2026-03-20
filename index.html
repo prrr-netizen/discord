@@ -2,65 +2,271 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>CORE PLAY - 포인트 허브</title>
+  <title>RLNL PLAY - 랜딩</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+  <style>
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
+
+    body{
+      font-family:'Segoe UI',system-ui,sans-serif;
+      background:
+        radial-gradient(circle at 0% 0%, #22c55e33, transparent 55%),
+        radial-gradient(circle at 100% 0%, #3b82f633, transparent 55%),
+        radial-gradient(circle at 50% 120%, #0ea5e955, #020617 70%),
+        #020617;
+      color:#e5e7eb;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px 10px;
+    }
+
+    .landing-wrapper{
+      width:100%;
+      max-width:960px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+
+    .landing-card{
+      width:100%;
+      max-width:560px;
+      background:
+        radial-gradient(circle at -10% -10%, rgba(34,197,94,.4), transparent 60%),
+        radial-gradient(circle at 110% -10%, rgba(59,130,246,.4), transparent 60%),
+        radial-gradient(circle at 50% 120%, rgba(14,165,233,.45), #020617 70%),
+        #020617;
+      border-radius:20px;
+      border:1px solid rgba(148,163,184,.75);
+      box-shadow:
+        0 0 60px rgba(59,130,246,.7),
+        0 22px 40px rgba(0,0,0,.95);
+      padding:22px 20px 16px;
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .landing-card::before{
+      content:"";
+      position:absolute;
+      inset:-40%;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(34,197,94,.22), transparent 55%),
+        radial-gradient(circle at 100% 0%, rgba(59,130,246,.22), transparent 55%);
+      opacity:.9;
+      z-index:-1;
+    }
+
+    .landing-header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom:4px;
+    }
+    .landing-logo{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    .landing-logo-icon{
+      width:34px;
+      height:34px;
+      border-radius:11px;
+      background:radial-gradient(circle at 30% 0,#22c55e,#0f172a);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:800;
+      font-size:18px;
+      box-shadow:0 0 18px rgba(34,197,94,.9);
+    }
+    .landing-logo-main{
+      font-size:16px;
+      font-weight:800;
+      letter-spacing:.04em;
+    }
+    .landing-logo-sub{
+      font-size:11px;
+      color:#9ca3af;
+    }
+
+    .landing-status{
+      font-size:10px;
+      padding:3px 8px;
+      border-radius:999px;
+      border:1px solid rgba(52,211,153,.9);
+      background:rgba(22,163,74,.25);
+      color:#bbf7d0;
+      text-shadow:0 0 4px rgba(34,197,94,1);
+    }
+
+    .landing-main h1{
+      font-size:18px;
+      margin-bottom:4px;
+    }
+    .landing-main p{
+      font-size:13px;
+      color:#d1d5db;
+      margin-bottom:8px;
+    }
+
+    .landing-feature-grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:6px;
+    }
+    .landing-feature{
+      border-radius:12px;
+      border:1px solid rgba(55,65,81,.95);
+      background:rgba(15,23,42,.96);
+      padding:8px 9px 7px;
+      display:flex;
+      gap:7px;
+      align-items:flex-start;
+      box-shadow:0 0 14px rgba(15,23,42,.9);
+    }
+    .feature-label{
+      width:22px;
+      height:22px;
+      border-radius:999px;
+      background:linear-gradient(135deg,#3b82f6,#22c55e);
+      color:#020617;
+      font-size:11px;
+      font-weight:700;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow:0 0 14px rgba(59,130,246,.9);
+    }
+    .landing-feature h2{
+      font-size:13px;
+      margin-bottom:2px;
+    }
+    .landing-feature p{
+      font-size:11px;
+      color:#9ca3af;
+      margin:0;
+    }
+
+    .landing-actions{
+      display:flex;
+      gap:8px;
+      margin-top:8px;
+    }
+    .btn{
+      border:none;
+      border-radius:999px;
+      padding:8px 14px;
+      font-size:13px;
+      cursor:pointer;
+      font-weight:600;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:6px;
+      transition:transform .12s ease, box-shadow .12s ease, background .12s ease, color .12s ease;
+    }
+    .btn-primary{
+      background:linear-gradient(135deg,#22c55e,#16a34a);
+      color:#020617;
+      box-shadow:0 0 18px rgba(34,197,94,.7);
+    }
+    .btn-primary:hover{
+      transform:translateY(-1px);
+      box-shadow:0 0 26px rgba(34,197,94,.9);
+    }
+    .btn-outline{
+      background:rgba(15,23,42,.9);
+      color:#e5e7eb;
+      border:1px solid rgba(148,163,184,.8);
+      box-shadow:0 0 10px rgba(15,23,42,.9);
+    }
+    .btn-outline:hover{
+      background:radial-gradient(circle at 0 0,#22c55e26,transparent 55%);
+    }
+
+    .landing-footer{
+      margin-top:4px;
+      font-size:10px;
+      color:#6b7280;
+    }
+
+    @media(max-width:640px){
+      .landing-card{
+        padding:18px 14px 14px;
+        max-width:100%;
+      }
+      .landing-actions{
+        flex-direction:column;
+      }
+    }
+  </style>
 </head>
-<body class="landing-body">
-<div class="landing-wrapper">
-  <div class="landing-card">
-    <header class="landing-header">
-      <div class="landing-logo">
-        <div class="landing-logo-icon">C</div>
-        <div class="landing-logo-text">
-          <div class="landing-logo-main">CORE PLAY</div>
-          <div class="landing-logo-sub">Points · Games · Events</div>
+<body>
+  <div class="landing-wrapper">
+    <div class="landing-card">
+      <header class="landing-header">
+        <div class="landing-logo">
+          <div class="landing-logo-icon">C</div>
+          <div>
+            <div class="landing-logo-main">CORE PLAY</div>
+            <div class="landing-logo-sub">실시간 룸 · 포인트 플랜 허브</div>
+          </div>
         </div>
-      </div>
-      <span class="landing-status">● LOBBY</span>
-    </header>
+        <div class="landing-status" id="landing-status">● CHECKING...</div>
+      </header>
 
-    <main class="landing-main">
-      <h1>포인트 게임 라운지</h1>
-      <p>간단한 포인트 미니게임과 이벤트를 한 곳에서 모아놓은 데모 허브입니다.</p>
-      <div class="landing-feature-grid">
-        <div class="landing-feature">
-          <span class="feature-label">01</span>
-          <div>
-            <h2>간편 닉네임 로그인</h2>
-            <p>별도 회원가입 없이 바로 입장.</p>
-          </div>
-        </div>
-        <div class="landing-feature">
-          <span class="feature-label">02</span>
-          <div>
-            <h2>포인트 지갑</h2>
-            <p>충전·보너스로 포인트 관리.</p>
-          </div>
-        </div>
-        <div class="landing-feature">
-          <span class="feature-label">03</span>
-          <div>
-            <h2>이벤트 리스트</h2>
-            <p>스포츠 대시보드 형식의 참여 화면.</p>
-          </div>
-        </div>
-      </div>
-    </main>
+      <main class="landing-main">
+        <h1>실시간 방송에 붙는 포인트 플레이</h1>
+        <p>
+          CORE PLAY는 디스코드 계정으로 연동해서,<br>
+          실시간 방송 / 미니게임 / 이벤트를 포인트로 즐길 수 있는 허브입니다.
+        </p>
 
-    <div class="landing-actions">
-      <button class="btn btn-primary landing-enter" onclick="location.href='home.html'">
-        입장하기
-      </button>
-      <button class="btn btn-outline" onclick="alert('이용 전에 안내사항을 꼭 읽어 주세요.');">
-        이용 안내
-      </button>
+        <div class="landing-feature-grid">
+          <div class="landing-feature">
+            <div class="feature-label">1</div>
+            <div>
+              <h2>디스코드 기반 연동</h2>
+              <p>한 번 연동해두면, 실시간 룸 · 봇 · 웹 대시보드에서 모두 동일 포인트를 사용합니다.</p>
+            </div>
+          </div>
+          <div class="landing-feature">
+            <div class="feature-label">2</div>
+            <div>
+              <h2>포인트 플랜 / 미니게임</h2>
+              <p>숫자 맞추기, 하이로우 카드 등 간단한 포인트 게임으로 미션/보상을 구성할 수 있습니다.</p>
+            </div>
+          </div>
+          <div class="landing-feature">
+            <div class="feature-label">3</div>
+            <div>
+              <h2>실시간 이벤트 연동</h2>
+              <p>실시간 방송 구간에만 열리는 슬롯, 리액션 보상 등 방송 콘텐츠에 맞는 연동이 가능합니다.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="landing-actions">
+          <button class="btn btn-primary" id="go-home-btn">포인트 허브 입장</button>
+          <button class="btn btn-outline" id="go-discord-btn">디스코드 서버 열기</button>
+        </div>
+        <div class="landing-footer">
+          디스코드 계정 연동은 다음 화면(HOME)에서 진행됩니다. · 베타 테스트용 레이아웃입니다.
+        </div>
+      </main>
     </div>
-
-    <footer class="landing-footer">
-      <span>※ 본 서비스는 베팅/환전 기능이 없는 포인트 이벤트 데모 페이지입니다.</span>
-    </footer>
   </div>
-</div>
+
+  <script src="index.js"></script>
 </body>
 </html>
