@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>PLAY - 실시간 포인트 허브</title>
+  <title>PLAY - 실시간 미니게임 허브</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     *{
@@ -28,7 +28,7 @@
 
     .landing-wrapper{
       width:100%;
-      max-width:960px;
+      max-width:1100px;
       display:flex;
       justify-content:center;
       align-items:center;
@@ -36,7 +36,7 @@
 
     .landing-card{
       width:100%;
-      max-width:560px;
+      max-width:960px;
       background:
         radial-gradient(circle at -10% -10%, rgba(34,197,94,.4), transparent 60%),
         radial-gradient(circle at 110% -10%, rgba(59,130,246,.4), transparent 60%),
@@ -47,7 +47,7 @@
       box-shadow:
         0 0 60px rgba(59,130,246,.7),
         0 22px 40px rgba(0,0,0,.95);
-      padding:22px 20px 16px;
+      padding:20px 20px 16px;
       display:flex;
       flex-direction:column;
       gap:14px;
@@ -109,20 +109,38 @@
       text-shadow:0 0 4px rgba(34,197,94,1);
     }
 
-    .landing-main h1{
+    .landing-main{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .intro-area h1{
       font-size:19px;
       margin-bottom:6px;
     }
-    .landing-main p{
+    .intro-area p{
       font-size:13px;
       color:#d1d5db;
-      margin-bottom:10px;
+      margin-bottom:6px;
       line-height:1.5;
     }
 
-    .landing-feature-grid{
+    .intro-grid{
       display:grid;
-      grid-template-columns:1fr;
+      grid-template-columns:1.1fr 1.4fr;
+      gap:14px;
+      align-items:stretch;
+    }
+    @media(max-width:840px){
+      .intro-grid{
+        grid-template-columns:1fr;
+      }
+    }
+
+    .intro-features{
+      display:flex;
+      flex-direction:column;
       gap:6px;
     }
     .landing-feature{
@@ -159,57 +177,76 @@
       line-height:1.4;
     }
 
-    .landing-actions{
-      display:flex;
-      gap:8px;
-      margin-top:10px;
+    /* 실시간 미니게임 카드 영역 (오른쪽) */
+    .realtime-grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:10px;
     }
-    .btn{
+    .live-card{
+      position:relative;
+      border-radius:14px;
+      overflow:hidden;
+      border:1px solid rgba(55,65,81,.95);
+      background:#020617;
+      min-height:260px;
+      box-shadow:0 0 22px rgba(15,23,42,.95);
+    }
+    .live-card iframe{
+      width:100%;
+      height:100%;
       border:none;
-      border-radius:999px;
-      padding:8px 14px;
-      font-size:13px;
-      cursor:pointer;
-      font-weight:600;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
+      display:block;
+    }
+    .live-tag-top{
+      position:absolute;
+      top:8px;
+      left:8px;
+      display:flex;
       gap:6px;
-      transition:transform .12s ease, box-shadow .12s ease, background .12s ease, color .12s ease;
+      align-items:center;
+      pointer-events:none;
     }
-    .btn-primary{
-      background:linear-gradient(135deg,#22c55e,#16a34a);
-      color:#020617;
-      box-shadow:0 0 18px rgba(34,197,94,.7);
+    .live-pill{
+      font-size:11px;
+      padding:4px 8px;
+      border-radius:999px;
+      background:rgba(220,38,38,.9);
+      color:#fecaca;
+      font-weight:600;
     }
-    .btn-primary:hover{
-      transform:translateY(-1px);
-      box-shadow:0 0 26px rgba(34,197,94,.9);
-    }
-    .btn-outline{
-      background:rgba(15,23,42,.9);
+    .viewer-pill{
+      font-size:11px;
+      padding:4px 8px;
+      border-radius:999px;
+      background:rgba(15,23,42,.85);
       color:#e5e7eb;
-      border:1px solid rgba(148,163,184,.8);
-      box-shadow:0 0 10px rgba(15,23,42,.9);
+      border:1px solid rgba(75,85,99,.9);
     }
-    .btn-outline:hover{
-      background:radial-gradient(circle at 0 0,#22c55e26,transparent 55%);
+    .live-info-bottom{
+      position:absolute;
+      left:0;
+      right:0;
+      bottom:0;
+      padding:7px 9px;
+      background:linear-gradient(to top,rgba(15,23,42,.96),transparent);
+      font-size:11px;
+      pointer-events:none;
+    }
+    .live-title{
+      font-weight:600;
+      font-size:12px;
+      margin-bottom:1px;
+    }
+    .live-meta{
+      font-size:11px;
+      color:#d1d5db;
     }
 
     .landing-footer{
-      margin-top:6px;
+      margin-top:2px;
       font-size:10px;
       color:#6b7280;
-    }
-
-    @media(max-width:640px){
-      .landing-card{
-        padding:18px 14px 14px;
-        max-width:100%;
-      }
-      .landing-actions{
-        flex-direction:column;
-      }
     }
   </style>
 </head>
@@ -218,57 +255,101 @@
     <div class="landing-card">
       <header class="landing-header">
         <div class="landing-logo">
-          <div class="landing-logo-icon">C</div>
+          <div class="landing-logo-icon">P</div>
           <div>
-            <div class="landing-logo-main">PLAY</div>
-            <div class="landing-logo-sub">실시간 룸 · 포인트 허브</div>
+            <div class="landing-logo-main">PLAY HUB</div>
+            <div class="landing-logo-sub">실시간 미니게임 허브</div>
           </div>
         </div>
         <div class="landing-status" id="landing-status">● LIVE SERVICE</div>
       </header>
 
       <main class="landing-main">
-        <h1>실시간 방송과 바로 연결되는 포인트 플레이 허브</h1>
-        <p>
-          CORE PLAY는 디스코드 계정 하나로<br>
-          실시간 방송, 미니게임, 이벤트를 모두 같은 포인트로 즐길 수 있는 통합 플레이 센터입니다.
-        </p>
+        <div class="intro-area">
+          <h1>실시간으로 바로 들어가는 HTML5 미니게임 룸</h1>
+          <p>
+            디스코드 계정 하나로 접속해서,<br>
+            브라우저 안에서 바로 돌아가는 외부 HTML5 미니게임들을 한 곳에서 즐길 수 있는 허브입니다.
+          </p>
+        </div>
 
-        <div class="landing-feature-grid">
-          <div class="landing-feature">
-            <div class="feature-label">1</div>
-            <div>
-              <h2>디스코드 계정 연동</h2>
-              <p>한 번 연동하면 실시간 룸, 봇, 웹 대시보드까지 어디서든 동일 포인트와 닉네임으로 플레이합니다.</p>
+        <div class="intro-grid">
+          <!-- 왼쪽 설명 -->
+          <div class="intro-features">
+            <div class="landing-feature">
+              <div class="feature-label">1</div>
+              <div>
+                <h2>브라우저만 있으면 바로 실행</h2>
+                <p>별도 설치 없이, PC·모바일 브라우저에서 바로 HTML5 미니게임을 플레이합니다.</p>
+              </div>
+            </div>
+            <div class="landing-feature">
+              <div class="feature-label">2</div>
+              <div>
+                <h2>외부 게임 임베드</h2>
+                <p>Playpager 등 외부에서 제공하는 무료 임베드 게임을 그대로 끌어와 실시간 룸처럼 구성합니다.</p>
+              </div>
+            </div>
+            <div class="landing-feature">
+              <div class="feature-label">3</div>
+              <div>
+                <h2>디스코드 연동 포인트 구조</h2>
+                <p>디스코드 봇과 연동하면, 각 게임 결과를 포인트·이벤트 구조에 연결해서 운영할 수 있습니다.</p>
+              </div>
             </div>
           </div>
-          <div class="landing-feature">
-            <div class="feature-label">2</div>
-            <div>
-              <h2>포인트 플랜 · 미니게임</h2>
-              <p>숫자 맞추기, 하이로우 카드 등 간단한 포인트 게임으로 방송 미션과 보상 구조를 자유롭게 설계할 수 있습니다.</p>
+
+          <!-- 오른쪽 실시간 미니게임 카드들 -->
+          <div class="realtime-grid">
+            <div class="live-card">
+              <iframe
+                src="https://playpager.com/embed/chess/index.html"
+                title="Mini Game 1"
+                scrolling="no"
+              ></iframe>
+              <div class="live-tag-top">
+                <div class="live-pill">LIVE</div>
+                <div class="viewer-pill">GAME #1</div>
+              </div>
+              <div class="live-info-bottom">
+                <div class="live-title">온라인 체스 (예시)</div>
+                <div class="live-meta">Playpager에서 제공하는 체스 게임 임베드입니다.</div>
+              </div>
             </div>
-          </div>
-          <div class="landing-feature">
-            <div class="feature-label">3</div>
-            <div>
-              <h2>실시간 방송 연동 이벤트</h2>
-              <p>방송 중에만 열리는 슬롯, 리액션 보상, 타임어택 미션까지 실시간 구간에 맞춰 이벤트를 자동으로 열고 닫습니다.</p>
+
+            <div class="live-card">
+              <iframe
+                src="https://playpager.com/embed/reversi/index.html"
+                title="Mini Game 2"
+                scrolling="no"
+              ></iframe>
+              <div class="live-tag-top">
+                <div class="live-pill">LIVE</div>
+                <div class="viewer-pill">GAME #2</div>
+              </div>
+              <div class="live-info-bottom">
+                <div class="live-title">리버시 / 오델로 (예시)</div>
+                <div class="live-meta">다른 HTML5 퍼즐/보드 게임으로 쉽게 교체할 수 있습니다.</div>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="landing-actions">
-          <button class="btn btn-primary" id="go-home-btn">포인트 허브 입장하기</button>
-          <button class="btn btn-outline" id="go-discord-btn">공식 디스코드 열기</button>
-        </div>
         <div class="landing-footer">
-          PLAY는 디스코드 로그인 기반으로 동작합니다. 다음 화면에서 계정을 연동한 뒤, 실시간 룸과 이벤트에 참여할 수 있습니다.
+          위 미니게임들은 예시이며, Playpager 또는 유사 서비스에서 제공하는 다른 HTML5 게임 iframe으로 언제든 교체할 수 있습니다.
         </div>
       </main>
     </div>
   </div>
 
-  <script src="index.js"></script>
+  <script>
+    // 상태 뱃지에 현재 시각 간단 표기
+    const statusEl = document.getElementById('landing-status');
+    setInterval(()=>{
+      const now = new Date();
+      const t = now.toTimeString().slice(0,5);
+      statusEl.textContent = `● LIVE SERVICE | ${t}`;
+    }, 1000);
+  </script>
 </body>
 </html>
