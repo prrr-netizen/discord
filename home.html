@@ -18,52 +18,54 @@
     </div>
     <div class="header-right">
       <div class="badge-online" id="status-badge">● ONLINE</div>
+      <div class="user-info" id="user-info">
+        비로그인 상태입니다
+      </div>
+      <button class="btn btn-outline" id="logout-btn" style="display:none;">로그아웃</button>
       <button class="btn btn-outline" onclick="location.href='index.html'">HOME</button>
     </div>
   </header>
 
-  <div class="main main--simple">
-    <!-- 좌측: 포인트 패널 -->
+  <div class="main">
+    <!-- 좌측: 로그인/지갑/미니게임 -->
     <div class="left">
-      <div class="section-card section-card--large">
-        <div class="section-title">포인트 현황</div>
-        <div class="section-sub">CORE PLAY 데모 포인트는 브라우저에만 저장되며, 실제 재화와 무관합니다.</div>
-
-        <div class="wallet wallet--big">
-          <div class="wallet-left">
-            <div class="wallet-label">내 보유 포인트</div>
-            <div class="wallet-balance" id="balance-text">0P</div>
+      <div class="section-card">
+        <div class="section-title">내 계정</div>
+        <div class="section-sub">로그인 후 포인트를 모아 미니게임과 이벤트에 참여해 보세요.</div>
+        <div class="auth-box" id="auth-box">
+          <div class="auth-row">
+            <input type="text" id="nickname-input" placeholder="닉네임 입력">
           </div>
-          <div class="wallet-right wallet-right--column">
-            <button class="btn btn-primary" id="btn-add-1000">+ 1,000P</button>
-            <button class="btn btn-outline" id="btn-reset">포인트 초기화</button>
+          <div class="auth-row">
+            <button class="btn btn-primary" id="login-btn">로그인 / 간편가입</button>
           </div>
+          <div class="auth-help">※ 별도 회원가입 없이 닉네임으로 간편 로그인 (로컬 저장)</div>
         </div>
 
-        <div class="quick-info">
-          <div class="quick-item">
-            <span class="quick-label">오늘 참여한 이벤트</span>
-            <span class="quick-value" id="today-events">0 회</span>
+        <div class="wallet" id="wallet-box" style="display:none;">
+          <div class="wallet-left">
+            <div style="font-size:13px;color:#9ca3af;">보유 포인트</div>
+            <div class="wallet-balance" id="balance-text">0P</div>
           </div>
-          <div class="quick-item">
-            <span class="quick-label">누적 사용 포인트</span>
-            <span class="quick-value" id="total-spent">0 P</span>
+          <div class="wallet-right">
+            <button class="btn btn-outline" id="charge-btn">포인트 충전</button>
+            <button class="btn btn-outline" id="bonus-btn">출석 보너스</button>
           </div>
         </div>
       </div>
 
-      <div class="section-card">
+      <div class="section-card" style="margin-top:10px;">
         <div class="section-title">포인트 미니게임</div>
-        <div class="section-sub">간단한 운빨 게임으로 포인트를 소액씩 주고받는 데모입니다.</div>
-        <div class="game-grid game-grid--large-text">
+        <div class="section-sub">포인트를 사용해 간단한 게임에 참여하고, 결과에 따라 포인트를 얻거나 잃을 수 있습니다.</div>
+        <div class="game-grid">
           <div class="game-card">
             <div class="game-header">
               <div>
                 <div class="game-name">숫자 맞추기</div>
-                <div class="game-cost">참여비: 100P · 성공 시 200P</div>
+                <div class="game-cost">참여비: 50P · 최대 당첨: 100P</div>
               </div>
             </div>
-            <div class="game-desc">1~5 사이 숫자를 맞추면 2배 지급.</div>
+            <div class="game-desc">1~5 사이 랜덤 숫자를 맞추면 포인트 2배!</div>
             <div class="game-footer">
               <span class="game-status">캐주얼 · 운빨</span>
               <button class="btn btn-primary game-play-btn" data-game="guess">플레이</button>
@@ -74,10 +76,10 @@
             <div class="game-header">
               <div>
                 <div class="game-name">하이로우 카드</div>
-                <div class="game-cost">참여비: 150P · 성공 시 250P</div>
+                <div class="game-cost">참여비: 100P · 최대 당첨: 160P</div>
               </div>
             </div>
-            <div class="game-desc">기준 숫자보다 높음/낮음만 선택하는 심플 게임.</div>
+            <div class="game-desc">임의 카드보다 높을지/낮을지 선택하는 간단한 게임.</div>
             <div class="game-footer">
               <span class="game-status">카드 · 심플</span>
               <button class="btn btn-primary game-play-btn" data-game="highlow">플레이</button>
@@ -87,20 +89,20 @@
       </div>
     </div>
 
-    <!-- 우측: 이벤트 리스트 -->
+    <!-- 우측: 경기/이벤트 리스트 -->
     <div class="right">
-      <div class="section-card section-card--large">
+      <div class="section-card">
         <div class="section-title">이벤트 & 매치 리스트</div>
-        <div class="section-sub">실제 베팅 기능은 없으며, 포인트로만 참여하는 데모 이벤트입니다.</div>
+        <div class="section-sub">실제 베팅 기능은 없으며, 포인트로 참여하는 이벤트/게임 목록입니다.</div>
 
-        <div class="filter-tabs filter-tabs--large">
+        <div class="filter-tabs">
           <button class="filter-btn active" data-filter="all">전체</button>
           <button class="filter-btn" data-filter="football">축구 테마</button>
           <button class="filter-btn" data-filter="esports">e스포츠</button>
           <button class="filter-btn" data-filter="mini">미니게임</button>
         </div>
 
-        <div class="match-list match-list--large" id="match-list"></div>
+        <div class="match-list" id="match-list"></div>
       </div>
     </div>
   </div>
